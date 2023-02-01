@@ -1,0 +1,26 @@
+:root {
+  //fonts
+  $heading: "Arapey", serif;
+  $body: "Maitree", serif;
+  $menu: "Work Sans", sans-serif;
+
+  //colors
+  $bg: #fa9e58;
+  $yellow: #fffe03;
+  $blue: #405b70;
+  $green: #6bbc93;
+  $rose: #f1468e;
+  $bg-light: #ffc9a9;
+}
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $heading;
+  font-size: 100%;
+  color: $blue;
+}
