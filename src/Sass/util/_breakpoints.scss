@@ -1,0 +1,9 @@
+$breakponts-down: (
+  "lg": 64em,
+  "md": 48em,
+  "sm": 32em
+);
+
+@mixin max ($size) {
+  @media (max-width :map-get($breakponts-down, $size)) {@content;}
+};

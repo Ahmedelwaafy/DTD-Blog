@@ -1,0 +1,181 @@
+@use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
+
+.nav-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  @include media.max(md) {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: bisque;
+  }
+
+  &__header {
+    display: flex;
+    width: 90%;
+    max-width: 1400px;
+    margin-inline: auto;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 0.1rem solid rgba(64, 91, 112, 0.5);
+
+    @include media.max(md) {
+      border-bottom: 0;
+    }
+    &--left {
+      width: fit-content;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+
+      img {
+        cursor: pointer;
+      }
+      @include media.max(sm) {
+        .night {
+          display: none;
+        }
+      }
+    }
+
+    &--logo {
+      font-size: 2rem;
+      letter-spacing: 0.4rem;
+      cursor: pointer;
+      .link {
+        text-decoration: none;
+      }
+    }
+
+    &--right {
+      width: fit-content;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      .user {
+        height: 2.18rem;
+        border-radius: 100%;
+        border: 0.1rem solid vars.$blue;
+        padding: 0.1rem;
+      }
+      .sign-in,
+      .subscribe,
+      .write {
+        width: fit-content;
+        height: fit-content;
+        font-family: vars.$menu;
+        font-size: 1rem;
+        padding: 0.4rem;
+        border: 0.1rem solid vars.$blue;
+        border-radius: 0.1rem;
+        background: transparent;
+        cursor: pointer;
+      }
+      .sign-in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: vars.$blue;
+        color: white;
+      }
+      .write {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      @include media.max(sm) {
+        .subscribe {
+          display: none;
+        }
+      }
+    }
+  }
+}
+.stick {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  &__navbar {
+    width: 90%;
+    max-width: 1400px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+
+    @include media.max(md) {
+      display: none;
+    }
+    .left-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+
+      .date {
+        min-width: 6rem;
+        p {
+          font-weight: 600;
+        }
+      }
+      ul {
+        width: 100%;
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        @include media.max(lg) {
+          font-size: 0.9rem;
+          img {
+            display: none;
+          }
+        }
+        .link {
+          text-decoration: none;
+          font-family: vars.$menu;
+          font-weight: 400;
+        }
+        .link:hover {
+          font-weight: 600;
+          transition: all 0.3s ease-in-out;
+        }
+        .hot {
+          position: relative;
+          p {
+            position: absolute;
+            font-family: vars.$menu;
+            font-size: 0.7rem;
+            background-color: vars.$rose;
+            padding: 0.1rem 0.2rem;
+            color: vars.$yellow;
+            border-radius: 0.2rem;
+            bottom: 1.1rem;
+            left: 3.3rem;
+            cursor: pointer;
+            @include media.max(lg) {
+              left: 2.3rem;
+              font-size: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+
+    button {
+      background-color: vars.$blue;
+      padding: 1.3rem;
+      border: 0;
+      border-radius: 0.1rem;
+      cursor: pointer;
+    }
+  }
+}

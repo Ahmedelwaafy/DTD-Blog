@@ -1,7 +1,10 @@
 
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <main className=".main">
+      
+home
+</main>
   )
 }
 
