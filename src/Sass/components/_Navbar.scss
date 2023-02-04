@@ -2,6 +2,7 @@
 @use "../util/breakpoints" as media;
 
 .nav-container {
+  z-index: 1000;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -14,8 +15,7 @@
 
   &__header {
     display: flex;
-    width: 90%;
-    max-width: 1400px;
+    width: min(90%, 1400px);
     margin-inline: auto;
     justify-content: space-between;
     align-items: center;
@@ -98,13 +98,13 @@
   }
 }
 .stick {
+  z-index: 1000;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 
   &__navbar {
-    width: 90%;
-    max-width: 1400px;
+    width: min(90%, 1400px);
     margin-inline: auto;
     display: flex;
     justify-content: space-between;

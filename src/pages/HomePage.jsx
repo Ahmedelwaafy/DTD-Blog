@@ -1,11 +1,12 @@
+import Hero from "../components/Hero";
 
 function HomePage() {
   return (
     <main className="">
+      <Hero />
       
-home
-</main>
-  )
+    </main>
+  );
 }
 
-export default HomePage
+export default HomePage;

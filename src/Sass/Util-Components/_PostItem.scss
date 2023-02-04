@@ -1,0 +1,129 @@
+@use "../util/boilerplate" as vars;
+
+.border {
+  display: flex;
+  gap: 0.8rem;
+  border: 0.1rem solid vars.$blue;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  width: 25rem;
+  &__img {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0.4rem;
+
+    &--img {
+      object-fit: cover;
+      object-position: left;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+    }
+    &--img:hover {
+      transform: scale(1.1);
+    }
+    &--glass {
+      position: absolute;
+      bottom: 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0 0.5rem 0.5rem ;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+
+      .author {
+        p {
+          font-family: vars.$menu;
+          color: #033961;
+        }
+        .authorName {
+          cursor: pointer;
+          font-size: 0.8rem;
+        }
+        .time {
+          font-size: 0.6rem;
+          margin-top: 0.1rem;
+          opacity: 0.8;
+        }
+      }
+      .category {
+        background-color: vars.$blue;
+       padding: 0.2rem 0.5rem;
+        font-family: vars.$menu;
+        color: #ffffff;
+        cursor: pointer;
+                  font-size: 0.8rem;
+
+        
+      }
+    }
+  }
+
+  &__content {
+    &--arrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 1rem;
+      h3 {
+        font-size: 1rem;
+        background: linear-gradient(
+          94deg,
+          rgb(64, 91, 112) 0%,
+          rgb(14, 123, 178) 100%
+        );
+
+        background-size: 0% 2px;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        transition: background-size 300ms ease;
+        cursor: pointer;
+      }
+      h3:hover {
+        background-size: 100% 2px;
+      }
+      img {
+        cursor: pointer;
+      }
+    }
+
+    &--description {
+      font-family: vars.$body;
+      font-size: 0.8rem;
+      font-weight: 400;
+      padding: 0 1rem;
+      line-height: 1.2rem;
+      margin: 0.5rem 0;
+      opacity: 0.8;
+    }
+    &--tag {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+      p {
+        font-family: vars.$menu;
+        font-size: 0.6rem;
+      }
+      .long {
+        //opacity: 0.8;
+      }
+      .tags {
+        border: 0.1rem solid vars.$orange;
+        border-radius: 0.5rem;
+        padding: 0.3rem;
+        background-color: vars.$orange;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+//.none{display: none;}

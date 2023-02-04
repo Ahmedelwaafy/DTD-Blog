@@ -30,7 +30,7 @@ function Navbar() {
             )}
           </div>
           <h2 className="nav-container__header--logo">
-            <Link className="link" to="/">
+            <Link className="link glitch " data-glitch="DTD"  to="/">
               DTD
             </Link>
           </h2>
