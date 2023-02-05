@@ -1,9 +1,283 @@
 @use "../util/boilerplate" as vars;
 @use "../util/breakpoints" as media;
 
-
-.RightSidebar{
+.RightSidebar {
   width: 30%;
   border-left: 3px solid vars.$blue;
   padding-inline: 1rem;
+  position: sticky;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  &__unlimited {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 0.9rem;
+    background-color: vars.$orange;
+    &--content {
+      h2 {
+        font-weight: bold;
+        color: vars.$dark-blue;
+      }
+      p {
+        font-family: vars.$menu;
+        margin-block: 0.6rem;
+        font-size: 0.8rem;
+      }
+      button {
+        font-family: vars.$menu;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.2rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.6rem;
+        background-color: vars.$rose;
+        color: vars.$dark-blue;
+        border: none;
+        font-size: 0.8rem;
+        border-radius: 0.7rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__ads {
+    border-radius: 0.9rem;
+    background-color: vars.$green;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--title {
+      font-family: vars.$menu;
+      margin-left: 1.7rem;
+      font-weight: 500;
+      color: vars.$dark-blue;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid vars.$blue;
+      border-radius: 0.5rem;
+      padding: 0.2rem 0.3rem;
+      width: fit-content;
+    }
+
+    &--content {
+      padding: 1rem;
+      width: 250px;
+      height: 250px;
+      background-color: vars.$white;
+      margin-inline: auto;
+      img {
+        display: block;
+        margin-inline: auto;
+      }
+      .place {
+        margin-block: 0.5rem;
+        font-size: 0.7rem;
+      }
+      h2,
+      p {
+        font-family: vars.$menu;
+        //margin-bottom: 0.5rem;
+      }
+      h2 {
+        font-size: 2.5rem;
+        color: vars.$dark-blue;
+      }
+      button {
+        font-family: vars.$menu;
+        margin-top: 1rem;
+        border: none;
+        background-color: transparent;
+        background: linear-gradient(
+          94deg,
+          rgb(64, 91, 112) 0%,
+          rgb(14, 123, 178) 100%
+        );
+
+        background-size: 100% 2px;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        transition: background-size 300ms ease;
+        cursor: pointer;
+        color: vars.$dark-blue;
+      }
+      button:hover {
+        background-size: 0% 2px;
+      }
+    }
+  }
+  &__tags {
+    border-radius: 0.9rem;
+    background-color: vars.$yellow;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--title {
+      font-family: vars.$menu;
+      margin-left: 1.7rem;
+      font-weight: 500;
+      color: vars.$dark-blue;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid vars.$blue;
+      border-radius: 0.5rem;
+      padding: 0.2rem 0.3rem;
+      width: fit-content;
+    }
+
+    &--content {
+      width: 250px;
+      height: 150px;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 5.3rem);
+      grid-template-rows: repeat(4, 1.1fr);
+      align-content: flex-end;
+      justify-content: center;
+      gap: 0.7rem;
+      button {
+        font-family: vars.$menu;
+        border: none;
+        background-color: vars.$dark-blue;
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.3rem 0.4rem;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 200;
+        transition: all 0.3s ease-in-out;
+      }
+
+      button:hover {
+        background-color: vars.$rose;
+      }
+    }
+  }
+  &__Instagram {
+    border-radius: 0.9rem;
+    background-color: vars.$purple;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--title {
+      font-family: vars.$menu;
+      margin-left: 1.7rem;
+      font-weight: 500;
+      color: vars.$rose;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid vars.$rose;
+      border-radius: 0.5rem;
+      padding: 0.2rem 0.3rem;
+      width: fit-content;
+    }
+
+    &--content {
+      //height: auto;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1.1fr);
+      align-content: flex-start;
+      justify-content: flex-start;
+      gap: 0.7rem;
+      img {
+        width: 6rem;
+        height: 6rem;
+        object-fit: cover;
+        object-position: top;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        border-radius: 0.3rem;
+        border: 1px solid vars.$rose;
+      }
+
+      img:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__write {
+    border-radius: 0.9rem;
+    background-color: vars.$light-rose;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    &--close {
+display: flex;
+justify-content: space-between;
+        margin-inline: 1.7rem;
+img{
+  cursor: pointer;
+}
+      .title {
+        font-family: vars.$menu;
+        font-weight: 500;
+        color: vars.$purple;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        border: 2px solid vars.$purple;
+        border-radius: 0.5rem;
+        padding: 0.2rem 0.3rem;
+        width: fit-content;
+       
+      }
+    }
+
+    &--content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding-inline: 1.7rem;
+      
+      
+
+      button {
+        width: fit-content;
+        font-family: vars.$menu;
+       
+        border: none;
+                background-color: transparent;
+
+        cursor: pointer;
+        color: vars.$purple;
+      }
+
+      .start{
+         margin-top: 0.8rem;
+        background: linear-gradient(
+          94deg,
+          rgb(64, 91, 112) 0%,
+          rgb(14, 123, 178) 100%
+        );
+
+        background-size: 100% 2px;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        transition: background-size 300ms ease;
+
+      }
+      .start:hover {
+        background-size: 0% 2px;
+      }
+    }
+  }
 }
