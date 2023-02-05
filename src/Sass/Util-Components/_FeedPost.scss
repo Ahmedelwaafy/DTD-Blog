@@ -1,37 +1,34 @@
 @use "../util/boilerplate" as vars;
 
-.border {
+.post {
   display: flex;
-  gap: 0.8rem;
-  border: 0.1rem solid vars.$blue;
-  border-radius: 0.5rem;
-  padding: 0.7rem;
+  flex-direction: column;
+  gap: 1.2rem;
+border-bottom: 3px solid vars.$blue;
+padding-bottom: 1.5rem;
   width: 25rem;
   &__img {
     position: relative;
     padding: 0;
     overflow: hidden;
-    border-radius: 0.4rem;
-
+    height: 20rem;
+transition: all 0.4s ease-in-out;
+border: 2px solid vars.$blue;
     &--img {
       object-fit: cover;
-      object-position: left;
+      //object-position: center;
       width: 100%;
       height: 100%;
-      border-radius: 0.4rem;
       cursor: pointer;
-      transition: all 0.4s ease-in-out;
     }
-    &--img:hover {
-      transform: scale(1.1);
-    }
+    
     &--glass {
       position: absolute;
       bottom: 0px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0 0.5rem 0.5rem ;
+      padding: 1rem 0 1rem 1rem;
       width: 100%;
       background: rgba(255, 255, 255, 0.5);
       -webkit-backdrop-filter: blur(10px);
@@ -44,36 +41,38 @@
         }
         .authorName {
           cursor: pointer;
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
         .time {
-          font-size: 0.6rem;
+          font-size: 0.8rem;
           margin-top: 0.1rem;
-          opacity: 0.8;
+          opacity: 0.7;
         }
       }
       .category {
         background-color: vars.$blue;
-       padding: 0.2rem 0.5rem;
+        padding: 0.4rem 0.7rem;
         font-family: vars.$menu;
         color: #ffffff;
         cursor: pointer;
-                  font-size: 0.8rem;
-
-        
+        font-size: 1rem;
       }
     }
   }
-
+&__img:hover {
+      -webkit-box-shadow: 7.5px 7.5px 2px 0 #405b70;
+      -moz-box-shadow: 7.5px 7.5px 2px 0 #405b70;
+      box-shadow: 7.5px 7.5px 2px 0 #405b70;
+    }
   &__content {
     &--arrow {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      padding: 0 1rem;
       h3 {
-        font-size: 1rem;
+        font-size: 1.2rem;
+        //color: vars.$green;
         background: linear-gradient(
           94deg,
           rgb(64, 91, 112) 0%,
@@ -89,41 +88,33 @@
       h3:hover {
         background-size: 100% 2px;
       }
-      img {
-        cursor: pointer;
-      }
+
+     
     }
 
     &--description {
       font-family: vars.$body;
-      font-size: 0.8rem;
+      font-size: 1rem;
       font-weight: 400;
-      padding: 0 1rem;
-      line-height: 1.2rem;
-      margin: 0.5rem 0;
+      line-height: 1.4rem;
+      margin: 0.9rem 0;
       opacity: 0.8;
     }
     &--tag {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 1rem;
       p {
         font-family: vars.$menu;
-        font-size: 0.6rem;
+        font-size: 0.7rem;
       }
-      .long {
-        //opacity: 0.8;
-      }
+     
       .tags {
-        border: 0.1rem solid vars.$orange;
-        border-radius: 0.5rem;
-        padding: 0.3rem;
-        background-color: vars.$orange;
+        border: 0.1rem solid vars.$rose;
+        color: vars.$rose;
+        padding: 0.3rem 0.5rem;
         cursor: pointer;
       }
     }
   }
 }
-
-//.none{display: none;}

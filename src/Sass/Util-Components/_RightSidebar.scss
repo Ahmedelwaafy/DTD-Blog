@@ -1,0 +1,9 @@
+@use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
+
+
+.RightSidebar{
+  width: 30%;
+  border-left: 3px solid vars.$blue;
+  padding-inline: 1rem;
+}

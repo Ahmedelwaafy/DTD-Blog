@@ -66,7 +66,7 @@ function Navbar() {
             <ul>
               <li>
                 <NavLink
-                  className="link"
+                 className="link"
                   to="/categories/uidesign"
                   style={activeLink}
                 >

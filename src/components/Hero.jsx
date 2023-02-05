@@ -1,5 +1,5 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import PostItem from "./Util-Components/PostItem";
+import HeroPost from "./Util-Components/HeroPost";
 function Hero() {
   const posts = [
     {
@@ -67,12 +67,12 @@ function Hero() {
           </h2>
         </div>
         <div className="hero__left--post">
-          <PostItem post={posts[0]} pop />{" "}
+          <HeroPost post={posts[0]} pop />{" "}
         </div>
       </div>
       <div className="hero__right">
-        <PostItem post={posts[1]} />
-        <PostItem post={posts[2]} />
+        <HeroPost post={posts[1]} />
+        <HeroPost post={posts[2]} />
       </div>
     </section>
   );

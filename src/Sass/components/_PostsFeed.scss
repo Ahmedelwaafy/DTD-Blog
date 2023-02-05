@@ -1,0 +1,13 @@
+@use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
+
+
+.PostsFeed{
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 4rem;
+  border-top: 3px solid vars.$blue;
+
+}

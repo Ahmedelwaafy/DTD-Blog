@@ -1,6 +1,6 @@
 import { truncate } from "lodash";
 
-function PostItem({ post, pop }) {
+function HeroPost({ post, pop }) {
   const { img, author, time, category, title, description, tags, long } = post;
 
   return (
@@ -42,4 +42,4 @@ function PostItem({ post, pop }) {
   );
 }
 
-export default PostItem;
+export default HeroPost;

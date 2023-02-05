@@ -1,0 +1,58 @@
+@use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
+
+
+.posts{
+  width: 40%;
+  min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+
+&__nav{
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-end;
+
+  &--postlink, &--link{
+
+    text-decoration-line: none;
+  }
+
+  &--postlink{
+    opacity: 0.8;
+    font-weight: 600;
+font-size: 1.1rem;
+        background: linear-gradient(
+          94deg,
+          rgb(64, 91, 112) 0%,
+          rgb(14, 123, 178) 100%
+        );
+
+        background-size: 0% 2px;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        transition: background-size 300ms ease;
+        cursor: pointer;
+
+  }
+
+  &--postlink:hover {
+        background-size: 100% 2px;
+        opacity: 1;
+      }
+}
+
+&__content{
+
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+
+      
+}
