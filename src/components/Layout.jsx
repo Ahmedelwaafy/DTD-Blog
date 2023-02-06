@@ -9,7 +9,7 @@ function Layout() {
       <Navbar />
       <div id="top"></div>
       <Outlet />
-      <Footer />
+      {/**<Footer /> */}
     </>
   );
 }

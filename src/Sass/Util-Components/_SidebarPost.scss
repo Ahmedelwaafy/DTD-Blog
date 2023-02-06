@@ -1,0 +1,92 @@
+@use "../util/boilerplate" as vars;
+
+
+.sidepost {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  &__img {
+    overflow: hidden;
+    width: 12rem;
+    height: rem;
+    padding: 0;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    img:hover {
+      transform: scale(1.1);
+    }
+  }
+  &__content {
+    &--tags {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+
+      button {
+        background-color: vars.$purple;
+        cursor: pointer;
+        border: 1px solid vars.$rose;
+        color: vars.$rose;
+        padding: 0.2rem 0.3rem;
+        font-size: 0.9rem;
+        -webkit-box-shadow: 2px 2px 2px 0 #381e5f;
+-moz-box-shadow: 2px 2px 2px 0 #381e5f;
+box-shadow: 2px 2px 2px 0 #f1468e;
+transition: all 0.3s ease-in-out;
+      }
+      button:hover {
+box-shadow: 0px 0px 0px 0 #381e5f;      }
+p{
+  font-family: vars.$menu;
+  font-size: 0.7rem;
+}
+    }
+h3{
+  margin-block: 0.5rem
+}
+    &--img {
+      display: flex;
+      justify-content: flex-start;
+      gap: 1rem;
+      align-items: center;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 100%;
+        border: 2px solid vars.$rose;
+        object-fit: cover;
+        cursor: pointer;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+       button {
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        color: vars.$dark-blue;
+       
+        font-size: 0.9rem;
+        font-family: vars.$menu;
+       
+      }
+      p{
+        font-size: 0.7rem;
+                font-family: vars.$menu;
+
+
+
+      }
+      }
+    }
+  }
+}

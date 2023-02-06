@@ -12,7 +12,7 @@ const showFollowing = () => ({
   backgroundSize: show === "following" ? "100% 2px" : "",
   backgroundRepeat: show === "following" ? "no-repeat" : "",
   backgroundPosition: show === "following" ? "left bottom" : "",
-  opacity: show === "following" ? "1" : "",
+  color: show === "following" ? "#093959" : "",
 });
 const showPost = () => ({
   background:
@@ -22,7 +22,7 @@ const showPost = () => ({
   backgroundSize: show === "posts" ? "100% 2px" : "",
   backgroundRepeat: show === "posts" ? "no-repeat" : "",
   backgroundPosition: show === "posts" ? "left bottom" : "",
-  opacity: show === "posts" ? "1" : "",
+  color: show === "posts" ? "#093959" : "",
 });
 
 

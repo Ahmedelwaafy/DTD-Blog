@@ -1,10 +1,354 @@
 @use "../util/boilerplate" as vars;
 @use "../util/breakpoints" as media;
 
-
-.LeftSidebar{
+.LeftSidebar {
   width: 30%;
-  //background-color: rgb(198, 218, 19);
   border-right: 3px solid vars.$blue;
   padding-inline: 1rem;
+hr{
+    
+border: 1px solid vars.$blue;
+margin-top: 0.3rem;  }
+
+  &__most {
+
+    &--title {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.2rem;
+border-bottom: 2px solid vars.$blue;
+      h2 {
+        font-family: vars.$menu;
+        font-style: italic;
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: vars.$blue;
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        font-family: vars.$menu;
+        font-size: 0.7rem;
+        padding-bottom: 0.3rem;
+        font-style: italic;
+        letter-spacing: 1px;
+        cursor: pointer;
+        img{
+          transition: all 0.3s ease-in-out ;
+        }
+      }
+      button:hover {
+        img {
+          
+          transform: translateX(5px);
+        }
+      }
+    }
+    &--content{
+margin-block: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  &__web {
+
+    &--title {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.2rem;
+border-bottom: 2px solid vars.$blue;
+      h2 {
+        font-family: vars.$menu;
+        font-style: italic;
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: vars.$blue;
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        font-family: vars.$menu;
+        font-size: 0.7rem;
+        padding-bottom: 0.3rem;
+        font-style: italic;
+        letter-spacing: 1px;
+        cursor: pointer;
+        img{
+          transition: all 0.3s ease-in-out ;
+        }
+      }
+      button:hover {
+        img {
+          
+          transform: translateX(5px);
+        }
+      }
+    }
+    &--content{
+margin-block: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    &--button {
+        font-family: vars.$menu;
+        margin-top: 1rem;
+        border: none;
+        background-color: transparent;
+        background: linear-gradient(
+          94deg,
+          rgb(64, 91, 112) 0%,
+          rgb(14, 123, 178) 100%
+        );
+
+        background-size: 100% 2px;
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        transition: background-size 300ms ease;
+        cursor: pointer;
+        color: vars.$dark-blue;
+                margin-bottom: 3rem;
+
+      }
+      button:hover {
+        background-size: 0% 2px;
+      }
+  }
+
+  &__authors {
+
+    &--title {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.2rem;
+border-bottom: 2px solid vars.$blue;
+      h2 {
+        font-family: vars.$menu;
+        font-style: italic;
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: vars.$blue;
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        font-family: vars.$menu;
+        font-size: 0.7rem;
+        padding-bottom: 0.3rem;
+        font-style: italic;
+        letter-spacing: 1px;
+        cursor: pointer;
+        img{
+          transition: all 0.3s ease-in-out ;
+        }
+      }
+      button:hover {
+        img {
+          
+          transform: translateX(5px);
+        }
+      }
+    }
+    &--content{
+margin-block: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+   
+  }
+
+  &__survey {
+margin-block: 3rem;
+    &--title {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.2rem;
+border-bottom: 2px solid vars.$blue;
+      h2 {
+        font-family: vars.$menu;
+        font-style: italic;
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: vars.$blue;
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        font-family: vars.$menu;
+        font-size: 0.7rem;
+        padding-bottom: 0.3rem;
+        font-style: italic;
+        letter-spacing: 1px;
+        cursor: pointer;
+        img{
+          transition: all 0.3s ease-in-out ;
+        }
+      }
+      button:hover {
+        img {
+          
+          transform: translateX(5px);
+        }
+      }
+    }
+    &--content{
+      h3{
+        margin-block: 2rem;
+        font-size: 1.2rem;
+  color: vars.$light-purple;
+  font-weight: 600;
+  font-family: vars.$menu;
+      }
+form{
+display: flex;
+flex-direction: column;
+gap: 1rem;
+
+
+div{
+  label{
+font-family: vars.$menu; 
+color: vars.$rose;
+}
+  
+}
+
+
+.check {
+  cursor: pointer;
+  position: relative;
+  margin-left: 0.5rem;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
+
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -23px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(241, 70, 142, 0.15);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.check svg {
+  position: relative;
+  z-index: 1;
+  top: 0.25rem;
+  right: 0.5rem;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: vars.$rose;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+
+.check:hover:before {
+  opacity: 1;
+}
+
+.check:hover svg {
+  stroke: var(--accent-color, vars.$rose);
+}
+
+.cbx:checked + .check svg {
+  stroke: var(--accent-color, vars.$rose);
+}
+
+.cbx:checked + .check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
+
+.cbx:checked + .check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
+}
+
+
+
+.submit-btn {
+  margin-top: 0.5rem;
+  cursor: pointer;
+  color: white;
+  width: fit-content;
+ padding: 0.5rem 0.7rem;
+ font-family: vars.$menu;
+ border-radius: 1rem;
+ border: 0;
+ background-color: vars.$rose;
+ box-shadow: vars.$rose 0px 7px 29px 0px;
+ letter-spacing: 1.5px;
+ text-transform: uppercase;
+ font-size: 0.8rem;
+ transition: all .5s ease;
+}
+
+.submit-btn:hover {
+ letter-spacing: 3px;
+ 
+ background-color: vars.$light-purple;
+ box-shadow: vars.$light-purple 0px 7px 29px 0px;
+ color: white;
+}
+
+.submit-btn:active {
+ letter-spacing: 3px;
+ background-color: hsl(261deg 80% 48%);
+ color: hsl(0, 0%, 100%);
+ box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+ transform: translateY(10px);
+ transition: 100ms;
+}
+
+}
+p{
+  margin-top: 1.2rem;
+  font-family: vars.$menu;
+  font-weight: bold;
+  color: vars.$light-purple;
+  span{
+  font-weight: 400;
+  color: vars.$rose;
+font-size: 0.9rem;
+  font-family: vars.$menu;
+
+  }
+
+}
+
+    }
+
+   
+  }
+
+
 }

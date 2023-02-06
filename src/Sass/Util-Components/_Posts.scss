@@ -23,7 +23,7 @@ gap: 1rem;
   }
 
   &--postlink{
-    opacity: 0.8;
+    
     font-weight: 600;
 font-size: 1.1rem;
         background: linear-gradient(
@@ -42,7 +42,7 @@ font-size: 1.1rem;
 
   &--postlink:hover {
         background-size: 100% 2px;
-        opacity: 1;
+        color: vars.$dark-blue;
       }
 }
 

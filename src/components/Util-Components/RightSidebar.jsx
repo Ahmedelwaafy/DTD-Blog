@@ -21,7 +21,7 @@ function RightSidebar() {
           alt="premium"
         />
       </div>
-
+      <hr />
       {/**ADS*/}
       <div className="RightSidebar__ads">
         <h3 className="RightSidebar__ads--title">
@@ -35,6 +35,7 @@ function RightSidebar() {
           <button className="link"> Contact Sales</button>
         </div>
       </div>
+      <hr />
       {/**Hot Tags*/}
       <div className="RightSidebar__tags">
         <h3 className="RightSidebar__ads--title">
@@ -55,6 +56,7 @@ function RightSidebar() {
           <button>#Roadmap </button>
         </div>
       </div>
+      <hr />
       {/**Instagram*/}
       <div className="RightSidebar__Instagram">
         <h3 className="RightSidebar__Instagram--title">
@@ -69,6 +71,7 @@ function RightSidebar() {
           <img src="../assets/instagram/insta6.jpg" alt="insta" />
         </div>
       </div>
+      <hr />
       {/**Write*/}
       {write && (
         <div className="RightSidebar__write">
