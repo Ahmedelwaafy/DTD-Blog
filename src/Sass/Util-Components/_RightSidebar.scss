@@ -3,30 +3,36 @@
 
 .RightSidebar {
   width: 30%;
-  border-left: 3px solid vars.$blue;
+  border-right: 3px solid vars.$blue;
   padding-inline: 1rem;
   position: sticky;
   top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  hr{
-    
-border: 1px solid vars.$blue;  }
+
+  @include media.max(lg) {
+        display: none;
+       
+      }  
+ 
+  hr {
+    border: 1px solid vars.$blue;
+  }
   &__unlimited {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1rem;
+    padding: 1.5rem;
     border-radius: 0.9rem;
     background-color: vars.$orange;
-    
 
     &--content {
       h2 {
-        font-weight: bold;
+        font-weight: 600;
         color: vars.$dark-blue;
+        font-family: vars.$menu;
       }
       p {
         font-family: vars.$menu;
@@ -40,7 +46,7 @@ border: 1px solid vars.$blue;  }
         gap: 0.2rem;
         align-items: center;
         justify-content: space-between;
-        padding: 0.6rem;
+        padding: 0.6rem 0.4rem;
         background-color: vars.$rose;
         color: vars.$dark-blue;
         border: none;
@@ -61,7 +67,7 @@ border: 1px solid vars.$blue;  }
 
     &--title {
       font-family: vars.$menu;
-      margin-left: 1.7rem;
+      margin-left: 1.6rem;
       font-weight: 500;
       color: vars.$dark-blue;
       display: flex;
@@ -75,8 +81,8 @@ border: 1px solid vars.$blue;  }
 
     &--content {
       padding: 1rem;
-      width: 250px;
-      height: 250px;
+      max-width: 250px;
+      max-height: 250px;
       background-color: vars.$white;
       margin-inline: auto;
       img {
@@ -122,14 +128,14 @@ border: 1px solid vars.$blue;  }
   &__tags {
     border-radius: 0.9rem;
     background-color: vars.$yellow;
-   padding: 2rem 1rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
     &--title {
       font-family: vars.$menu;
-      margin-left: 1.7rem;
+      //margin-left:1.6rem;
       font-weight: 500;
       color: vars.$dark-blue;
       display: flex;
@@ -142,8 +148,8 @@ border: 1px solid vars.$blue;  }
     }
 
     &--content {
-      width: 250px;
-      height: 150px;
+      max-width: 250px;
+      height: auto;
       margin-inline: auto;
       display: grid;
       grid-template-columns: repeat(3, 5.3rem);
@@ -151,6 +157,9 @@ border: 1px solid vars.$blue;  }
       align-content: flex-end;
       justify-content: center;
       gap: 0.7rem;
+      @include media.max(alg) {
+        grid-template-columns: repeat(2, 5.3rem);
+      }
       button {
         font-family: vars.$menu;
         border: none;
@@ -192,7 +201,6 @@ border: 1px solid vars.$blue;  }
     }
 
     &--content {
-      //height: auto;
       margin-inline: auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -200,9 +208,13 @@ border: 1px solid vars.$blue;  }
       align-content: flex-start;
       justify-content: flex-start;
       gap: 0.7rem;
+
+      @include media.max(alg) {
+        grid-template-columns: repeat(2, 1fr);
+      }
       img {
-        width: 6rem;
-        height: 6rem;
+        width: 5.2rem;
+        height: 5.2rem;
         object-fit: cover;
         object-position: top;
         overflow: hidden;
@@ -220,23 +232,28 @@ border: 1px solid vars.$blue;  }
   &__write {
     border-radius: 0.9rem;
     background-color: vars.$light-rose;
-   padding: 2rem 1rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
 
     &--close {
-display: flex;
-justify-content: space-between;
-        margin-left: 1.7rem;
-        margin-right: 0.8rem;
-img{
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-img:hover{
-  transform: scale(1.2);
-}
+      display: flex;
+      justify-content: space-between;
+      margin-left: 1.7rem;
+      margin-right: 0.8rem;
+       @include media.max(alg) {
+                    margin-right: 0.1rem;
+
+
+      }
+      img {
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+      img:hover {
+        transform: scale(1.2);
+      }
       .title {
         font-family: vars.$menu;
         font-weight: 500;
@@ -248,7 +265,6 @@ img:hover{
         border-radius: 0.5rem;
         padding: 0.2rem 0.3rem;
         width: fit-content;
-       
       }
     }
 
@@ -257,22 +273,20 @@ img:hover{
       flex-direction: column;
       gap: 0.7rem;
       padding-inline: 1.7rem;
-      
-      
 
       button {
-        width: fit-content;
+        
         font-family: vars.$menu;
-       
         border: none;
-                background-color: transparent;
-
+        background-color: transparent;
         cursor: pointer;
+        text-align: start;
         color: vars.$purple;
       }
 
-      .start{
-         margin-top: 0.8rem;
+      .start {
+        width: fit-content;
+        margin-top: 0.8rem;
         background: linear-gradient(
           94deg,
           rgb(64, 91, 112) 0%,
@@ -283,7 +297,6 @@ img:hover{
         background-repeat: no-repeat;
         background-position: left bottom;
         transition: background-size 300ms ease;
-
       }
       .start:hover {
         background-size: 0% 2px;

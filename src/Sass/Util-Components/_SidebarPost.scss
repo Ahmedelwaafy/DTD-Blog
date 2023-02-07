@@ -1,10 +1,17 @@
 @use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
 
 
 .sidepost {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 2rem;
+  @include media.max(alg) {
+          gap: 1rem;
+
+      }
+
+       
   &__img {
     overflow: hidden;
     width: 12rem;
@@ -57,9 +64,12 @@ h3{
       align-items: center;
 
       img {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 100%;
+        min-width: 3rem;
+        max-width: 3rem;
+        min-height: 3rem;
+        max-height: 3rem;
+
+        border-radius: 50%;
         border: 2px solid vars.$rose;
         object-fit: cover;
         cursor: pointer;
@@ -77,6 +87,7 @@ h3{
        
         font-size: 0.9rem;
         font-family: vars.$menu;
+        text-align: start;
        
       }
       p{

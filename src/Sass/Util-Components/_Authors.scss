@@ -13,8 +13,10 @@
     align-items: center;
 
     img {
-      width: 3rem;
-      height: 3rem;
+      min-width: 3rem;
+        max-width: 3rem;
+        min-height: 3rem;
+        max-height: 3rem;
       border-radius: 100%;
       border: 2px solid vars.$green;
       object-fit: cover;
@@ -32,6 +34,7 @@
         color: vars.$dark-green;
         font-size: 0.9rem;
         font-family: vars.$menu;
+        text-align: start;
       }
       p {
         font-size: 0.7rem;
