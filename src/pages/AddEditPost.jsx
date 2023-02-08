@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 function AddEditPost() {
   const {
     register,
-    trigger,
-    handleSubmit,
+        handleSubmit,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
- const onSubmit = (data) => {
+ 
+  const onSubmit = (data) => {
    console.log(data);
  };
 

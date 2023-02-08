@@ -1,0 +1,229 @@
+@use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
+
+.signin {
+  display: flex;
+  justify-content: center;
+  //align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 4rem 9rem;
+
+  @include media.max(lg) {
+    padding: 4rem 4rem;
+  }
+  @include media.max(md) {
+    padding: 4rem 2rem;
+  }
+
+  &__left {
+    width: 50%;
+    background-color: vars.$light-purple;
+    border-radius: 2rem 0 0 2rem;
+    box-shadow: -8px 3.5px 13.5px 0 #5d18dc67;
+    @include media.max(amd) {
+      display: none;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    h2,
+    p,
+    span {
+      color: vars.$white;
+      font-family: vars.$menu;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    p {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.4rem;
+      span {
+        opacity: 0.7;
+        font-size: 0.8rem;
+      }
+    }
+    .authors {
+      min-width: 5rem;
+      min-height: 5rem;
+      max-width: 6rem;
+      max-height: 6rem;
+      border-radius: 100%;
+      border: 2px solid vars.$white;
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    border-radius: 0 2rem 2rem 0;
+    width: 50%;
+    background-color: vars.$white;
+    box-shadow: 8px 3.5px 13.5px 0 #f1468d67;
+
+    @include media.max(amd) {
+      width: 100%;
+      border-radius: 2rem;
+      box-shadow: 3.5px 3.5px 13.5px 0 #f1468d67;
+    }
+    &--above-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      .logo {
+        line-height: 35px;
+        cursor: pointer;
+        font-size: 3rem;
+        background-color: transparent;
+        border: none;
+        color: vars.$rose;
+        text-align: center;
+        width: fit-content;
+        letter-spacing: 5px;
+      }
+      h1,
+      .welcome {
+        font-family: vars.$menu;
+        color: vars.$rose;
+        text-align: center;
+        width: 100%;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .welcome {
+        opacity: 0.8;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      div {
+        width: 60%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      input,
+      button {
+        width: 100%;
+        height: 2rem;
+        font-family: vars.$menu;
+        padding-left: 0.5rem;
+        border-radius: 0.6rem;
+        transition: box-shadow 0.3s ease-in-out;
+        background-color: transparent;
+        border: 2px solid vars.$rose;
+        color: vars.$rose;
+      }
+      input::placeholder {
+        color: vars.$rose;
+        opacity: 0.5;
+      }
+      input:focus,
+      button:hover {
+        outline: none;
+        border: none;
+        box-shadow: 0 0 0 2px vars.$light-purple;
+
+        background-color: vars.$orange;
+        color: vars.$light-purple;
+      }
+
+      p {
+        font-family: vars.$menu;
+        color: vars.$black;
+        font-size: 0.8rem;
+        margin-top: 0.4rem;
+      }
+
+      button {
+        width: 60%;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      button:active {
+        transform: scale(0.9);
+      }
+    }
+
+    &--under-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      p {
+        font-family: vars.$menu;
+        color: vars.$rose;
+        //opacity: 0.8;
+        font-size: 0.8rem;
+      }
+      .sign-options {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0.6rem;
+          border: 2px solid vars.$rose;
+          background-color: transparent;
+          padding: 0.2rem 0.5rem;
+          gap: 0.5rem;
+          cursor: pointer;
+          font-family: vars.$menu;
+          color: vars.$rose;
+          transition: all 0.3s ease;
+        }
+        button:hover {
+          background-color: vars.$orange;
+        }
+        button:active {
+          transform: scale(0.9);
+        }
+      }
+
+      .dont {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        h4,
+        h5 {
+          font-family: vars.$menu;
+          color: vars.$rose;
+          font-weight: 500;
+          font-size: 0.8rem;
+        }
+        h4 {
+          opacity: 0.8;
+        }
+        h5 {
+          font-weight: 600;
+          font-size: 0.9rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
