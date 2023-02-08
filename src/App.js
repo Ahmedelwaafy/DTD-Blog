@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import { Suspense, lazy } from "react";
 import About from "./pages/About";
+import AddEditPost from "./pages/AddEditPost";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 import { MainLoader, PinLoader } from "./utilities/Loaders";
 const LazyHomePage = lazy(() => import("./pages/HomePage"));
-const LazyAddEditPost = lazy(() => import("./pages/AddEditPost"));
 const LazyCategoryPage = lazy(() => import("./pages/CategoryPage"));
 const LazySinglePostPage = lazy(() => import("./pages/SinglePostPage"));
 
@@ -43,24 +43,14 @@ function App() {
               </Suspense>
             }
           />
-          <Route
-            path="/write"
-            element={
-              <Suspense fallback={<PinLoader />}>
-                <LazyAddEditPost />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/update/:post"
-            element={
-              <Suspense fallback={<PinLoader />}>
-                <LazyAddEditPost />
-              </Suspense>
-            }
+
+        
           />
           <Route path="/about" element={<About />} />
         </Route>
+
+        <Route path="/write" element={<AddEditPost />} />
+        <Route path="/update/:post" element={<AddEditPost />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
