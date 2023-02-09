@@ -5,11 +5,11 @@ import { Outlet } from "react-router-dom";
 function Layout() {
   return (
     <>
-      
       <Navbar />
       <div id="top"></div>
       <Outlet />
-      {/**<Footer /> */}
+      <Footer />
+      {/** */}
     </>
   );
 }
