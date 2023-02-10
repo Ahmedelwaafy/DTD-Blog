@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
 
 function SignIn() {
@@ -21,7 +21,7 @@ function SignIn() {
     console.log(data);
     reset();
     if (signin){
-
+const {user} = await signInWithEmailAndPassword(auth, data.email,data.password)
     }
     else{
        const {user} = await createUserWithEmailAndPassword(auth, data.email,data.password)
