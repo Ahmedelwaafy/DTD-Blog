@@ -1,21 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firebase";
 
 function SignIn() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    reset,
+    getValues,
+  } = useForm({
+    mode: "onTouched",
+  });
   const navigate = useNavigate();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
   const [signin, setSignin] = useState(true);
+
+  const handleAuth = async (data) => {
+    console.log(data);
+    reset();
+    if (signin){
+
+    }
+    else{
+       const {user} = await createUserWithEmailAndPassword(auth, data.email,data.password)
+       await updateProfile(user, {displayName: `${data.firstName} ${data.lastName}`,});
+    }
+           //navigate("/", { replace: true });
+
+  };
+
+
   return (
-    <section className="container">
+    <section className="signinContainer">
       <div className="signin">
         <div className="signin__left">
           <h2>DTD is the secret place for proficiency.</h2>
@@ -43,7 +61,63 @@ function SignIn() {
                 : "Hey, Enter your details to sign up."}
             </p>
           </div>
-          <form target="_blank" onSubmit={handleSubmit(onSubmit)} method="POST">
+          <form target="_blank" onSubmit={handleSubmit(handleAuth)} method="POST">
+            {/**First & Last Name */}
+
+            {!signin && (
+              <div className="name">
+                <div className="firstName">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    name="first-name"
+                    autoComplete="on"
+                    {...register("firstName", {
+                      required: true,
+                      maxLength: 15,
+                      minLength: 3,
+                    })}
+                  />
+                  {errors.firstName && (
+                    <p>
+                      {errors.firstName.type === "required" &&
+                        "This field is required."}
+
+                      {errors.firstName.type === "maxLength" &&
+                        "Max length is 15 char."}
+                      {errors.firstName.type === "minLength" &&
+                        "Min length is 3 char."}
+                    </p>
+                  )}
+                </div>
+                <div className="lastName">
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    name="last-name"
+                    autoComplete="on"
+                    {...register("lastName", {
+                      required: true,
+                      maxLength: 15,
+                      minLength: 3,
+                    })}
+                  />
+                  {errors.lastName && (
+                    <p>
+                      {errors.lastName.type === "required" &&
+                        "This field is required."}
+
+                      {errors.lastName.type === "maxLength" &&
+                        "Max length is 15 char."}
+                      {errors.lastName.type === "minLength" &&
+                        "Min length is 3 char."}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/**Email */}
             <div>
               <input
                 type="text"
@@ -64,6 +138,8 @@ function SignIn() {
               )}
             </div>
 
+            {/**Password */}
+
             <div>
               <input
                 type="password"
@@ -72,15 +148,51 @@ function SignIn() {
                 autoComplete="on"
                 {...register("password", {
                   required: true,
+                  maxLength: 15,
+                  minLength: 6,
                 })}
               />
               {errors.password && (
                 <p>
                   {errors.password.type === "required" &&
                     "This field is required."}
+                  {errors.password.type === "maxLength" &&
+                    "Password Max length is 15 char."}
+                  {errors.password.type === "minLength" &&
+                    "Password Min length is 6 char."}
                 </p>
               )}
             </div>
+
+            {/**Confirm Password */}
+            {!signin && (
+              <div>
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="Confirm-password"
+                  autoComplete="on"
+                  {...register("confirmPassword", {
+                    required: true,
+                    maxLength: 15,
+                    minLength: 6,
+                    validate: (value) => value === getValues("password"),
+                  })}
+                />
+                {errors.confirmPassword && (
+                  <p>
+                    {errors.confirmPassword.type === "required" &&
+                      "This field is required."}
+                    {errors.confirmPassword.type === "maxLength" &&
+                      "Password Max length is 15 char."}
+                    {errors.confirmPassword.type === "minLength" &&
+                      "Password Min length is 6 char."}
+                    {errors.confirmPassword.type === "validate" &&
+                      "Passwords don't match ."}
+                  </p>
+                )}
+              </div>
+            )}
             <button type="submit">{signin ? "Sign in" : "Sign up"}</button>
           </form>
 
