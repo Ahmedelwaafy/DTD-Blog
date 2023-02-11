@@ -1,13 +1,25 @@
 import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { auth } from "../firebase";
+
 function Navbar() {
   const activeLink = ({ isActive }) => ({
     fontWeight: isActive ? "600" : "",
   });
-  const auth = false;
+  //const auth = false;
   const [scroll, setScroll] = useState(false);
+  const [user, setUser] = useState(null);
+  const [showDropMenu, setShowDropMenu] = useState(false);
 
   useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+
     const handleScroll = () => {
       if (window.scrollY > 75) {
         setScroll(true);
@@ -17,6 +29,8 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  console.log(user);
+
   return (
     <>
       <div className="nav-container">
@@ -25,19 +39,76 @@ function Navbar() {
             <img src="../assets/burger.svg" alt="burger" />
             <img className="night" src="../assets/night.svg" alt="night" />
 
-            {auth && (
+            {user && (
               <img src="../assets/notification.svg" alt="notification" />
             )}
           </div>
           <h2 className="nav-container__header--logo">
-            <Link className="link glitch " data-glitch="DTD"  to="/">
+            <Link className="link glitch " data-glitch="DTD" to="/">
               DTD
             </Link>
           </h2>
           <div className="nav-container__header--right">
-            {auth && (
+            {user && (
               <>
-                <img className="user" src="../assets/user.svg" alt="user" />
+                <div className="drop-down">
+                  <img 
+                  onClick={()=>setShowDropMenu(!showDropMenu)}
+                  className="user" src="../assets/user.svg" alt="user" />
+                  <img
+onClick={()=>setShowDropMenu(!showDropMenu)}
+
+                    className="down-arrow"
+                    src="../assets/down-arrow.svg"
+                    alt="down-arrow"
+                  />
+                  {showDropMenu&&<div className="drop-down-menu">
+                    
+                    <button>
+                      <img
+                        className=""
+                        src="../assets/profile-blue.svg"
+                        alt="profile"
+                      />
+                      Profile
+                    </button>
+                    <button>
+                      <img
+                        className=""
+                        src="../assets/saves.svg"
+                        alt="Saves"
+                      />
+                      Saves
+                    </button>
+                    <button>
+                      <img
+                        className=""
+                        src="../assets/stories.svg"
+                        alt="Stories"
+                      />
+                      Stories
+                    </button>
+                    <button>
+                      <img
+                        className=""
+                        src="../assets/stats.svg"
+                        alt="Stats"
+                      />
+                      Stats
+                    </button>
+                    <hr />
+                    <button>Settings</button>
+                    <button>Gift a membership</button>
+                    <button>Manage publications</button>
+                    <button>
+                      Go Pro
+                      <img className="" src="../assets/pro.svg" alt="pro" />
+                    </button>
+                    <hr />
+                    <button>Sign out</button>
+                    <span>{user?.email}</span>
+                  </div>}
+                </div>
 
                 <button className="write">
                   <img src="../assets/write.svg" alt="write" />
@@ -45,11 +116,21 @@ function Navbar() {
                 </button>
               </>
             )}
-            <button className="sign-in">
-              <img src="../assets/profile.svg" alt="profile" />
-              Sign In
+            {!user && (
+              <button className="sign-in">
+                <img src="../assets/profile.svg" alt="profile" />
+                Sign In
+              </button>
+            )}
+            <button
+              style={{
+                color: user ? "white" : "",
+                backgroundColor: user ? "#405b70" : "",
+              }}
+              className="subscribe"
+            >
+              Subscribe
             </button>
-            <button className="subscribe">Subscribe</button>
           </div>
         </header>
       </div>
@@ -66,7 +147,7 @@ function Navbar() {
             <ul>
               <li>
                 <NavLink
-                 className="link"
+                  className="link"
                   to="/categories/uidesign"
                   style={activeLink}
                 >
