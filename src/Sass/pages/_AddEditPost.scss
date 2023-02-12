@@ -3,7 +3,7 @@
 
 //@include media.max(md) {display: none;  }
 
-.container {
+.form-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
       }
     }
 
-    form {
+    .form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -167,6 +167,9 @@
         stroke-dashoffset: 42;
         transition: all 0.2s linear;
         transition-delay: 0.15s;
+      }
+      .form-submit-btn{
+        cursor: pointer;
       }
     }
   }

@@ -14,7 +14,7 @@ function AddEditPost() {
  };
 
   return (
-    <div className="container">
+    <div className="form-container">
       <div className="inner-container">
         <div className="above-form">
           <button onClick={() => navigate(-1)}>
@@ -22,7 +22,12 @@ function AddEditPost() {
           </button>
           <h1>Create a new post</h1>
         </div>
-        <form target="_blank" onSubmit={handleSubmit(onSubmit)} method="POST">
+        <form
+          className="form"
+          target="_blank"
+          onSubmit={handleSubmit(onSubmit)}
+          method="POST"
+        >
           {/**first row/title */}
           <div className="first-row">
             <input
@@ -227,7 +232,7 @@ function AddEditPost() {
             )}
           </div>
 
-          <input type="submit" />
+          <input className="form-submit-btn" type="submit" />
         </form>
       </div>
     </div>

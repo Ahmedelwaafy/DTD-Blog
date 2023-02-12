@@ -1,16 +1,23 @@
+import { signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
 function Navbar() {
+  const navigate = useNavigate();
   const activeLink = ({ isActive }) => ({
     fontWeight: isActive ? "600" : "",
   });
-  //const auth = false;
   const [scroll, setScroll] = useState(false);
   const [user, setUser] = useState(null);
   const [showDropMenu, setShowDropMenu] = useState(false);
 
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      setUser(null);
+      navigate("/signin");
+    });
+  };
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -52,77 +59,81 @@ function Navbar() {
             {user && (
               <>
                 <div className="drop-down">
-                  <img 
-                  onClick={()=>setShowDropMenu(!showDropMenu)}
-                  className="user" src="../assets/user.svg" alt="user" />
                   <img
-onClick={()=>setShowDropMenu(!showDropMenu)}
-
+                    onClick={() => setShowDropMenu(!showDropMenu)}
+                    className="user"
+                    src="../assets/user.svg"
+                    alt="user"
+                  />
+                  <img
+                    onClick={() => setShowDropMenu(!showDropMenu)}
                     className="down-arrow"
                     src="../assets/down-arrow.svg"
                     alt="down-arrow"
                   />
-                  {showDropMenu&&<div className="drop-down-menu">
-                    
-                    <button>
-                      <img
-                        className=""
-                        src="../assets/profile-blue.svg"
-                        alt="profile"
-                      />
-                      Profile
-                    </button>
-                    <button>
-                      <img
-                        className=""
-                        src="../assets/saves.svg"
-                        alt="Saves"
-                      />
-                      Saves
-                    </button>
-                    <button>
-                      <img
-                        className=""
-                        src="../assets/stories.svg"
-                        alt="Stories"
-                      />
-                      Stories
-                    </button>
-                    <button>
-                      <img
-                        className=""
-                        src="../assets/stats.svg"
-                        alt="Stats"
-                      />
-                      Stats
-                    </button>
-                    <hr />
-                    <button>Settings</button>
-                    <button>Gift a membership</button>
-                    <button>Manage publications</button>
-                    <button>
-                      Go Pro
-                      <img className="" src="../assets/pro.svg" alt="pro" />
-                    </button>
-                    <hr />
-                    <button>Sign out</button>
-                    <span>{user?.email}</span>
-                  </div>}
+                  {showDropMenu && (
+                    <div className="drop-down-menu">
+                      <button>
+                        <img
+                          className=""
+                          src="../assets/profile-blue.svg"
+                          alt="profile"
+                        />
+                        Profile
+                      </button>
+                      <button>
+                        <img
+                          className=""
+                          src="../assets/saves.svg"
+                          alt="Saves"
+                        />
+                        Saves
+                      </button>
+                      <button>
+                        <img
+                          className=""
+                          src="../assets/stories.svg"
+                          alt="Stories"
+                        />
+                        Stories
+                      </button>
+                      <button>
+                        <img
+                          className=""
+                          src="../assets/stats.svg"
+                          alt="Stats"
+                        />
+                        Stats
+                      </button>
+                      <hr />
+                      <button>Settings</button>
+                      <button>Gift a membership</button>
+                      <button>Manage publications</button>
+                      <button>
+                        Go Pro
+                        <img className="" src="../assets/pro.svg" alt="pro" />
+                      </button>
+                      <hr />
+                      <button onClick={handleLogout}>Sign out</button>
+                      <span>{user?.email}</span>
+                    </div>
+                  )}
                 </div>
 
-                <button className="write">
+                <button onClick={() => navigate("/write")} className="write">
                   <img src="../assets/write.svg" alt="write" />
                   Write
                 </button>
               </>
             )}
             {!user && (
-              <button className="sign-in">
+              <button onClick={() => navigate("/signin")} className="sign-in">
                 <img src="../assets/profile.svg" alt="profile" />
                 Sign In
               </button>
             )}
             <button
+              onClick={() => navigate("/pricing")}
               style={{
                 color: user ? "white" : "",
                 backgroundColor: user ? "#405b70" : "",

@@ -27,7 +27,7 @@ const {user} = await signInWithEmailAndPassword(auth, data.email,data.password)
        const {user} = await createUserWithEmailAndPassword(auth, data.email,data.password)
        await updateProfile(user, {displayName: `${data.firstName} ${data.lastName}`,});
     }
-           //navigate("/", { replace: true });
+        //navigate("/", { replace: true });
 
   };
 
