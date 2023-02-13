@@ -1,16 +1,16 @@
 import { truncate } from "lodash";
 
 function FeedPost({ post }) {
-  const { img, author, time, category, title, description, tags, long } = post;
+  const { imgUrl, author, timestamp, category, title, description, tags, long,id } = post;
 
   return (
     <div className="post">
       <div className="post__img">
-        <img className="post__img--img" src={img} alt="" />
+        <img className="post__img--img" src={imgUrl} alt="" />
         <div className="post__img--glass">
           <div className="author">
             <p className="authorName">{author}</p>
-            <p className="time">{time}</p>
+            <p className="time">{timestamp.toDate().toDateString()}</p>
           </div>
           <p className="category">{category}</p>
         </div>
