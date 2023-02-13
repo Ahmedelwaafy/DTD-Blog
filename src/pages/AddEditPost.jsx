@@ -1,18 +1,72 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
+import { useEffect, useState } from "react";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { db, storage } from "../firebase";
+import { toast } from "react-toastify";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
-function AddEditPost() {
+function AddEditPost({ user }) {
+  const [formData, setFormData] = useState(null);
+  const [progress, setProgress] = useState(null);
+  const Tags = [];
+
   const {
     register,
-        handleSubmit,
+    handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
-  const navigate = useNavigate();
- 
-  const onSubmit = (data) => {
-   console.log(data);
- };
 
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    //console.log(data);
+    const storageRef = ref(storage, data.image[0].name);
+    const uploadTask = uploadBytesResumable(storageRef, data.image[0]);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        //toast.info(`Image Uploading is ${progress} % done`);
+        setProgress(progress);
+      },
+      (error) => {
+        toast.error("Some error happened while uploading your photo");
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
+          toast.info("Image upload to firebase successfully");
+          delete data.image
+          setFormData({ ...data, imgUrl: downloadUrl });
+        });
+      }
+    );
+    console.log(formData);
+    navigate("/")
+    reset()
+  };
+  useEffect(() => {
+    const uploadData = async () => {
+      try {
+        await addDoc(collection(db, "blogs"), {
+          ...formData,
+          timestamp: serverTimestamp(),
+          userId: user.uid,
+          author: user.displayName,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    formData && uploadData();
+  }, [formData]);
+
+  const handleTags = (tags) => {};
   return (
     <div className="form-container">
       <div className="inner-container">
@@ -162,13 +216,13 @@ function AddEditPost() {
           <div className="radio">
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="cb1"
                 className="cbx"
                 name="survey"
                 style={{ display: "none" }}
                 {...register("trending", {
-                  required: true,
+                  //required: true,
                 })}
               />
 
@@ -186,7 +240,7 @@ function AddEditPost() {
                 </p>
               )}
             </div>
-            <div>
+            {/**<div>
               <input
                 type="radio"
                 id="cb2"
@@ -210,7 +264,7 @@ function AddEditPost() {
                     "Please select any option."}
                 </p>
               )}
-            </div>
+            </div> */}
           </div>
 
           {/**fifth row/image */}
@@ -221,18 +275,25 @@ function AddEditPost() {
               name="image"
               {...register("image", {
                 required: true,
-                maxSize: 50,
               })}
+            />
+            <ReactTagInput
+              tags={Tags}
+              placeholder="Tags"
+              onChange={handleTags}
             />
             {errors.image && (
               <p>
                 {errors.image.type === "required" && "This field is required."}
-                {errors.image.type === "maxSize" && "Max length is 3000 char."}
               </p>
             )}
           </div>
 
-          <input className="form-submit-btn" type="submit" />
+          <input
+            disabled={progress !== null && progress < 100}
+            className="form-submit-btn"
+            type="submit"
+          />
         </form>
       </div>
     </div>

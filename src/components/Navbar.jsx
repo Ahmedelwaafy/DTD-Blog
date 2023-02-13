@@ -1,32 +1,16 @@
-import { signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
 
-function Navbar() {
+function Navbar({ user, handleLogout }) {
   const navigate = useNavigate();
   const activeLink = ({ isActive }) => ({
     fontWeight: isActive ? "600" : "",
   });
   const [scroll, setScroll] = useState(false);
-  const [user, setUser] = useState(null);
   const [showDropMenu, setShowDropMenu] = useState(false);
 
-  const handleLogout = () => {
-    signOut(auth).then(() => {
-      setUser(null);
-      navigate("/signin");
-    });
-  };
+  
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        setUser(authUser);
-      } else {
-        setUser(null);
-      }
-    });
-
     const handleScroll = () => {
       if (window.scrollY > 75) {
         setScroll(true);

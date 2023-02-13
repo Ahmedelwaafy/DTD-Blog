@@ -2,10 +2,10 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
-function Layout() {
+function Layout({ user, handleLogout }) {
   return (
     <>
-      <Navbar />
+      <Navbar user={user} handleLogout={handleLogout} />
       <div id="top"></div>
       <Outlet />
       <Footer />
