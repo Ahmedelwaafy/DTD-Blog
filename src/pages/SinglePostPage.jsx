@@ -1,10 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import SidebarPost from "../components/Util-Components/SidebarPost";
 import { useState, useEffect } from "react";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { toast } from "react-toastify";
+import { PostLoader } from "../components/Util-Components/Loaders";
 
-function SinglePostPage() {
+function SinglePostPage({user}) {
   const { id } = useParams();
   const [scroll, setScroll] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,20 +22,34 @@ function SinglePostPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    const getBlogDetail = async () => {
-      setLoading(true);
+const getPostDetails = async () => {
+      
       const docRef = doc(db, "blogs", id);
       const postData = await getDoc(docRef);
       setPost(postData.data());
+           
     };
-
-    id && getBlogDetail();
+  useEffect(() => {
+    
+    id && getPostDetails();
   }, [id]);
 
   const navigate = useNavigate();
-
+  const handleDelete  = async (pid) => {
+    if (window.confirm("Are you sure wanted to delete that post ?")) {
+      try {
+        setLoading(true);
+        await deleteDoc(doc(db, "blogs", pid));
+        toast.success("Post deleted successfully");
+        setLoading(false);
+        navigate("/", {replace:true})
+      } catch (err) {
+        toast.error("An error happened while deleting the post");
+        console.log(err);
+      }
+    }
+  };
+if (loading) {return <PostLoader />;}
   return (
     <section className="container">
       <div className="container__post">
@@ -79,14 +95,20 @@ function SinglePostPage() {
             </abbr>
           </div>
           <p>{post?.description}</p>
-          <div className="buttons">
-            <abbr title="edit">
-              <img src="../assets/edit.svg" alt="edit" />
-            </abbr>
-            <abbr title="Delete">
-              <img src="../assets/delete.svg" alt="delete" />
-            </abbr>
-          </div>
+          {user && user?.uid === post?.userId && (
+            <div className="buttons">
+              <abbr title="edit">
+                <img src="../assets/edit.svg" alt="edit" />
+              </abbr>
+              <abbr title="Delete">
+                <img
+                  onClick={() => handleDelete(id)}
+                  src="../assets/delete.svg"
+                  alt="delete"
+                />
+              </abbr>
+            </div>
+          )}
         </div>
         {scroll && (
           <div className="sticky">

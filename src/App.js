@@ -14,7 +14,7 @@ import About from "./pages/About";
 import AddEditPost from "./pages/AddEditPost";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
-import { MainLoader, PinLoader } from "./utilities/Loaders";
+import { MainLoader, PinLoader } from "./components/Util-Components/Loaders";
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 const LazyHomePage = lazy(() => import("./pages/HomePage"));
@@ -71,7 +71,7 @@ function App() {
             path="/posts/:id"
             element={
               <Suspense fallback={<MainLoader />}>
-                <LazySinglePostPage />
+                <LazySinglePostPage user={user} />
               </Suspense>
             }
           />
@@ -81,11 +81,15 @@ function App() {
 
         <Route
           path="/write"
-          element={user ? <AddEditPost user={user} /> : <Navigate to="/signin" />}
+          element={
+            user ? <AddEditPost user={user} /> : <Navigate to="/signin" />
+          }
         />
         <Route
           path="/update/:post"
-          element={user ? <AddEditPost user={user} /> : <Navigate to="/signin" />}
+          element={
+            user ? <AddEditPost user={user} /> : <Navigate to="/signin" />
+          }
         />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<NotFound />} />

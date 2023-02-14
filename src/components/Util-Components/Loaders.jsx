@@ -1,9 +1,7 @@
 
 
 export const MainLoader = () => {
-  return (
-    <div classNameName="Mainloader"></div>
-  )
+  return <div className="Mainloader"></div>;
 }
 
 export const PinLoader = () => {

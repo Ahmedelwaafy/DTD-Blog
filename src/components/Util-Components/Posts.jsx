@@ -3,7 +3,7 @@ import FeedPost from "./FeedPost";
 import { NavLink, Link } from "react-router-dom";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
-
+import { PostLoader } from "./Loaders";
 function Posts() {
   const [show, setShow] = useState("posts");
   const [posts, setPosts] = useState([]);
@@ -49,7 +49,9 @@ function Posts() {
     backgroundPosition: show === "posts" ? "left bottom" : "",
     color: show === "posts" ? "#093959" : "",
   });
-
+if (loading) {
+  return <PostLoader/>
+}
   return (
     <section className="posts">
       <div className="posts__nav">
