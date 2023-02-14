@@ -40,14 +40,14 @@ function AddEditPost({ user }) {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-          toast.info("Image upload to firebase successfully");
+          toast.success("Your post has created successfully");
           delete data.image
           setFormData({ ...data, imgUrl: downloadUrl });
         });
       }
     );
-    console.log(formData);
-    navigate("/")
+    //console.log(formData);
+    
     reset()
   };
   useEffect(() => {
@@ -62,7 +62,9 @@ function AddEditPost({ user }) {
       } catch (error) {
         console.log(error);
       }
+      navigate("/");
     };
+    console.log(formData);
     formData && uploadData();
   }, [formData]);
 
@@ -200,14 +202,14 @@ function AddEditPost({ user }) {
               placeholder="Description"
               cols="60"
               rows="8"
-              {...register("description", { required: true, maxLength: 3000 })}
+              {...register("description", { required: true, maxLength: 10000 })}
             ></textarea>
             {errors.description && (
               <p>
                 {errors.description.type === "required" &&
                   "This field is required."}
                 {errors.description.type === "maxLength" &&
-                  "Max length is 3000 char."}
+                  "Max length is 10000 char."}
               </p>
             )}
           </div>

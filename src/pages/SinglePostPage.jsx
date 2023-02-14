@@ -1,9 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SidebarPost from "../components/Util-Components/SidebarPost";
 import { useState, useEffect } from "react";
+import { collection, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 function SinglePostPage() {
+  const {id} =useParams()
   const [scroll, setScroll] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [post, setPost] = useState(null);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 370) {
@@ -14,6 +20,18 @@ function SinglePostPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+    useEffect(() => {
+      id && getBlogDetail();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
+    const getBlogDetail = async () => {
+      setLoading(true);
+      const docRef = doc(db, "blogs", id);
+      const postData = await getDoc(docRef)
+      setPost(postData.data())
+      
+    };
   const navigate = useNavigate();
 
   const posts = [

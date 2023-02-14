@@ -8,7 +8,26 @@ function Posts() {
   const [show, setShow] = useState("posts");
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "blogs"),
+      (snapshot) => {
+        let list = [];
+        snapshot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setPosts(list);
+        setLoading(false);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => {
+      unsub();
+    };
+  }, []);
 
   const showFollowing = () => ({
     background:

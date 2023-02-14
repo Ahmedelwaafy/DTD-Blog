@@ -2,7 +2,17 @@ import React from 'react'
 import { truncate } from "lodash";
 
 function SidebarPost({ post, position,imgno }) {
-  const { img, author,  title,tags, long } = post;
+  const {
+    imgUrl,
+    author,
+    timestamp,
+    category,
+    title,
+    description,
+    tags,
+    duration,
+    id,
+  } = post;
   return (
     <div className="sidepost">
       <div className="sidepost__img">
@@ -10,8 +20,8 @@ function SidebarPost({ post, position,imgno }) {
       </div>
       <div className="sidepost__content">
         <div className="sidepost__content--tags">
-          <button>{tags}</button>
-          <p>{long}</p>
+          <button>#{tags}</button>
+          <p>{duration} min read</p>
         </div>
         <h3 className="sidepost__content--title">
           {truncate(title, { length: 50 })}
