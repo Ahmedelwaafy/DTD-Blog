@@ -68,7 +68,7 @@ function App() {
             }
           />
           <Route
-            path="/posts/:Post"
+            path="/posts/:id"
             element={
               <Suspense fallback={<MainLoader />}>
                 <LazySinglePostPage />

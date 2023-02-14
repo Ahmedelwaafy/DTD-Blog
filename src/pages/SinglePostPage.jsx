@@ -5,10 +5,10 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 function SinglePostPage() {
-  const {id} =useParams()
+  const { id } = useParams();
   const [scroll, setScroll] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,84 +21,46 @@ function SinglePostPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-    useEffect(() => {
-      id && getBlogDetail();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id]);
+  useEffect(() => {
     const getBlogDetail = async () => {
       setLoading(true);
       const docRef = doc(db, "blogs", id);
-      const postData = await getDoc(docRef)
-      setPost(postData.data())
-      
+      const postData = await getDoc(docRef);
+      setPost(postData.data());
     };
-  const navigate = useNavigate();
 
-  const posts = [
-    {
-      img: "../assets/hero-posts/1.jpg",
-      author: "Will Brett",
-      time: "November 3, 2022",
-      category: "web",
-      title: "11 Stages To Become A JavaScript Full-Stack Engineer",
-      description:
-        "Most of the questions asked are about how to quickly improve their skills, how to become a Full Stack Developer, or how to choose a career direction.Most of the questions asked are about how to quickly improve their skills, how to become a Full Stack Developer, or how to choose a career direction.Most of the questions asked are about how to quickly improve their skills, how to become a Full Stack Developer, or how to choose a career direction.",
-      tags: "javascript",
-      long: "4min read",
-    },
-    {
-      img: "../assets/hero-posts/2.jpg",
-      author: "Nick Meyer",
-      time: "December 8, 2022",
-      category: "web",
-      title:
-        "8 design system management tools for startups & organizations, 2023",
-      description:
-        "Design systems create consistency, scalability, and efficiency across complex products and distributed teams. They’re also a drain on resources and a struggle to keep synced in dynamic organizations. These tools can help.",
-      tags: "management",
-      long: "10min read",
-    },
-    {
-      img: "../assets/hero-posts/3.jpg",
-      author: "Nirbhay luthra",
-      time: "Jan 31, 2023",
-      category: "web",
-      title: "How I Made My App 2.4x Faster Switching to Svelte",
-      description:
-        "This article is not to say that Angular can’t be fast. That’s not true. It’s that Svelte Kit makes it intuitive to be fast.",
-      tags: "Svelte",
-      long: "6min read",
-    },
-  ];
-  const { img, author, time, category, title, description, tags, long } =
-    posts[0];
+    id && getBlogDetail();
+  }, [id]);
+
+  const navigate = useNavigate();
 
   return (
     <section className="container">
       <div className="container__post">
         <div className="container__post--relative">
-          <img src={img} alt={title} />
+          <img src={post?.imgUrl} alt={post?.title} />
           <div className="absolute">
             <div className="absolute__first-row">
               <p>
-                Published in <span>{time}</span>
+                Published in{" "}
+                <span>{post?.timestamp?.toDate().toDateString()}</span>
               </p>
               <div className="absolute__first-row--tags">
-                <button onClick={() => navigate(`/tags/{${tags}}`)}>
-                  {tags}
+                <button onClick={() => navigate(`/tags/${post?.tags}`)}>
+                  #{post?.tags}
                 </button>
               </div>
             </div>
-            <h1 className="absolute__title">{title}</h1>
+            <h1 className="absolute__title">{post?.title}</h1>
             <div className="absolute__last-row">
               <div className="absolute__last-row--author-image-container">
                 <img src="../assets/authors/1.jpg" alt="" />
                 <div>
-                  <h4>{author}</h4>
+                  <h4>{post?.author}</h4>
                   <button>Follow</button>
                 </div>
               </div>
-              <h6>{long}</h6>
+              <h6>{post?.duration} min read</h6>
             </div>
           </div>
         </div>
@@ -116,7 +78,7 @@ function SinglePostPage() {
               <img src="../assets/twitter.svg" alt="twitter" />
             </abbr>
           </div>
-          <p>{description}</p>
+          <p>{post?.description}</p>
           <div className="buttons">
             <abbr title="edit">
               <img src="../assets/edit.svg" alt="edit" />
@@ -156,7 +118,7 @@ function SinglePostPage() {
         {/** Category*/}
         <div className="LeftSidebar__web">
           <div className="LeftSidebar__web--title">
-            <h2>{category.toUpperCase()}</h2>
+            <h2>{post?.category?.toUpperCase()}</h2>
             {/**<button>
               See all <img src="../assets/right-arrow.svg" alt="right-arrow" />
             </button> */}
@@ -164,22 +126,19 @@ function SinglePostPage() {
 
           <div className="LeftSidebar__web--content">
             <SidebarPost
-              post={posts[0]}
+              //post={posts[0]}
               position={"Fron-End Developer"}
               imgno={"1"}
             />
             <SidebarPost
-              post={posts[1]}
+              //post={posts[1]}
               position={"Full-Stack Developer"}
               imgno={"2"}
             />
-            <SidebarPost post={posts[2]} position={"UI Designer"} imgno={"3"} />
-
-            <SidebarPost post={posts[2]} position={"UI Designer"} imgno={"3"} />
           </div>
           <button className="LeftSidebar__web--button">
             {" "}
-            See More for {category.toUpperCase()}
+            See More for {post?.category?.toUpperCase()}
           </button>
         </div>
       </div>
