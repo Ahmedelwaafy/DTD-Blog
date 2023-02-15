@@ -8,8 +8,8 @@ function Layout({ user, handleLogout }) {
       <Navbar user={user} handleLogout={handleLogout} />
       <div id="top"></div>
       <Outlet />
-      <Footer />
-      {/** */}
+     
+      {/**  <Footer />*/}
     </>
   );
 }

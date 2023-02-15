@@ -6,7 +6,7 @@ import { db } from "../firebase";
 import { toast } from "react-toastify";
 import { PostLoader } from "../components/Util-Components/Loaders";
 
-function SinglePostPage({user}) {
+function SinglePostPage({ user }) {
   const { id } = useParams();
   const [scroll, setScroll] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,34 +22,33 @@ function SinglePostPage({user}) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-const getPostDetails = async () => {
-      
-      const docRef = doc(db, "blogs", id);
-      const postData = await getDoc(docRef);
-      setPost(postData.data());
-           
-    };
+  const getPostDetails = async () => {
+    const docRef = doc(db, "blogs", id);
+    const postData = await getDoc(docRef);
+    setPost(postData.data());
+  };
   useEffect(() => {
-    
     id && getPostDetails();
   }, [id]);
 
   const navigate = useNavigate();
-  const handleDelete  = async (pid) => {
+  const handleDelete = async (pid) => {
     if (window.confirm("Are you sure wanted to delete that post ?")) {
       try {
         setLoading(true);
         await deleteDoc(doc(db, "blogs", pid));
         toast.success("Post deleted successfully");
         setLoading(false);
-        navigate("/", {replace:true})
+        navigate("/", { replace: true });
       } catch (err) {
-        toast.error("An error happened while deleting the post");
+        toast.error("An error happened while deleting the post, please try again later!");
         console.log(err);
       }
     }
   };
-if (loading) {return <PostLoader />;}
+  if (loading) {
+    return <PostLoader />;
+  }
   return (
     <section className="container">
       <div className="container__post">
@@ -98,7 +97,11 @@ if (loading) {return <PostLoader />;}
           {user && user?.uid === post?.userId && (
             <div className="buttons">
               <abbr title="edit">
-                <img src="../assets/edit.svg" alt="edit" />
+                <img
+                onClick={() => navigate(`/update/${id}`)}
+                  src="../assets/edit.svg"
+                  alt="edit"
+                />
               </abbr>
               <abbr title="Delete">
                 <img

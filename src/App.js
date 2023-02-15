@@ -86,7 +86,7 @@ function App() {
           }
         />
         <Route
-          path="/update/:post"
+          path="/update/:id"
           element={
             user ? <AddEditPost user={user} /> : <Navigate to="/signin" />
           }
