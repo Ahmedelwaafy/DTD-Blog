@@ -1,13 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
-import SidebarPost from "../components/Util-Components/SidebarPost";
+import SidebarPosts from "../components/Util-Components/SidebarPosts";
 import { useState, useEffect } from "react";
-import { collection, deleteDoc, doc, getDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { toast } from "react-toastify";
 import { PostLoader } from "../components/Util-Components/Loaders";
 
 function SinglePostPage({ user }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [scroll, setScroll] = useState(false);
   const [loading, setLoading] = useState(false);
   const [post, setPost] = useState(null);
@@ -22,16 +23,17 @@ function SinglePostPage({ user }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const getPostDetails = async () => {
-    const docRef = doc(db, "blogs", id);
-    const postData = await getDoc(docRef);
-    setPost(postData.data());
-  };
+
   useEffect(() => {
+    const getPostDetails = async () => {
+      const docRef = doc(db, "blogs", id);
+      const postData = await getDoc(docRef);
+      setPost(postData.data());
+    };
     id && getPostDetails();
+    
   }, [id]);
 
-  const navigate = useNavigate();
   const handleDelete = async (pid) => {
     if (window.confirm("Are you sure wanted to delete that post ?")) {
       try {
@@ -41,7 +43,9 @@ function SinglePostPage({ user }) {
         setLoading(false);
         navigate("/", { replace: true });
       } catch (err) {
-        toast.error("An error happened while deleting the post, please try again later!");
+        toast.error(
+          "An error happened while deleting the post, please try again later!"
+        );
         console.log(err);
       }
     }
@@ -98,7 +102,7 @@ function SinglePostPage({ user }) {
             <div className="buttons">
               <abbr title="edit">
                 <img
-                onClick={() => navigate(`/update/${id}`)}
+                  onClick={() => navigate(`/update/${id}`)}
                   src="../assets/edit.svg"
                   alt="edit"
                 />
@@ -141,31 +145,7 @@ function SinglePostPage({ user }) {
 
       <div className="container__aside">
         {/** Category*/}
-        <div className="LeftSidebar__web">
-          <div className="LeftSidebar__web--title">
-            <h2>{post?.category?.toUpperCase()}</h2>
-            {/**<button>
-              See all <img src="../assets/right-arrow.svg" alt="right-arrow" />
-            </button> */}
-          </div>
-
-          <div className="LeftSidebar__web--content">
-            <SidebarPost
-              //post={posts[0]}
-              position={"Fron-End Developer"}
-              imgno={"1"}
-            />
-            <SidebarPost
-              //post={posts[1]}
-              position={"Full-Stack Developer"}
-              imgno={"2"}
-            />
-          </div>
-          <button className="LeftSidebar__web--button">
-            {" "}
-            See More for {post?.category?.toUpperCase()}
-          </button>
-        </div>
+        <SidebarPosts name={post?.category} property={"category"} value={post?.category} />
       </div>
     </section>
   );

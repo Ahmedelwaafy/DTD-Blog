@@ -8,8 +8,29 @@ function Navbar({ user, handleLogout }) {
   });
   const [scroll, setScroll] = useState(false);
   const [showDropMenu, setShowDropMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [shownNotification, setShownNotification] = useState(false);
+  const date = new Date();
 
-  
+  let day = date.getDate();
+  let shortMonth = date.toLocaleString("en-us", { month: "short" });
+  let year = date.getFullYear();
+  let currentDate = `${day} ${shortMonth}, ${year}`;
+
+  const dayIndex = new Date().getDay();
+  const getDayName = (dayIndex) => {
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return days[dayIndex];
+  };
+  const dayName = getDayName(dayIndex);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 75) {
@@ -27,11 +48,109 @@ function Navbar({ user, handleLogout }) {
       <div className="nav-container">
         <header className="nav-container__header">
           <div className="nav-container__header--left">
-            <img src="../assets/burger.svg" alt="burger" />
+            <img
+              onClick={() => setShowMenu(!showMenu)}
+              src="../assets/burger.svg"
+              alt="burger"
+            />
+            {showMenu && (
+              <div className="burger-menu">
+                <button onClick={() => setShowMenu(false)}>
+                  <img className="" src="../assets/night.svg" alt="profile" />
+                  Night Mode
+                </button>
+                <button>
+                  <img
+                    className=""
+                    src="../assets/notification.svg"
+                    alt="notification"
+                  />
+                  Notifications
+                </button>
+
+                <hr />
+                <button
+                  onClick={() => {
+                    navigate("/categories/uidesign");
+                    setShowMenu(false);
+                  }}
+                >
+                  UI Design
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/categories/uxdesign");
+                    setShowMenu(false);
+                  }}
+                >
+                  Ux Design
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/categories/web");
+                    setShowMenu(false);
+                  }}
+                >
+                  Web
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/categories/nft");
+                    setShowMenu(false);
+                  }}
+                >
+                  NFT{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/categories/devops");
+                    setShowMenu(false);
+                  }}
+                >
+                  DevOps{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/categories/chatgpt");
+                    setShowMenu(false);
+                  }}
+                >
+                  ChatGPT{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/categories/deployment");
+                    setShowMenu(false);
+                  }}
+                >
+                  Deployment{" "}
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/categories/seo");
+                    setShowMenu(false);
+                  }}
+                >
+                  SEO
+                </button>
+
+                <hr />
+                <button onClick={handleLogout}>Sign out</button>
+                <span>{user?.email}</span>
+              </div>
+            )}
             <img className="night" src="../assets/night.svg" alt="night" />
 
             {user && (
-              <img src="../assets/notification.svg" alt="notification" />
+              <img
+                onClick={() => setShownNotification(!shownNotification)}
+                className="notification-relative"
+                src="../assets/notification.svg"
+                alt="notification"
+              />
+            )}
+            {shownNotification && (
+              <div className="notification">You have no new notifications!</div>
             )}
           </div>
           <h2 className="nav-container__header--logo">
@@ -136,9 +255,10 @@ function Navbar({ user, handleLogout }) {
         <nav className="stick__navbar">
           <div className="left-nav">
             <div className="date">
-              <p>Monday</p>
-              <span>12 Apr, 2023</span>
+              <p>{dayName}</p>
+              <span>{currentDate}</span>
             </div>
+
             <ul>
               <li>
                 <NavLink

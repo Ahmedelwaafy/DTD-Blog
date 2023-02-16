@@ -1,42 +1,38 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import HeroPost from "./Util-Components/HeroPost";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../firebase";
+import { PostLoader } from "./Util-Components/Loaders";
+
+
 function Hero() {
-  const posts = [
-    {
-      img: "../assets/hero-posts/1.jpg",
-      author: "Will Brett",
-      time: "November 3, 2022",
-      category: "web",
-      title: "11 Stages To Become A JavaScript Full-Stack Engineer",
-      description:
-        "Most of the questions asked are about how to quickly improve their skills, how to become a Full Stack Developer, or how to choose a career direction.",
-      tags: "javascript",
-      long: "4min read",
-    },
-    {
-      img: "../assets/hero-posts/2.jpg",
-      author: "Nick Meyer",
-      time: "December 8, 2022",
-      category: "web",
-      title:
-        "8 design system management tools for startups & organizations, 2023",
-      description:
-        "Design systems create consistency, scalability, and efficiency across complex products and distributed teams. They’re also a drain on resources and a struggle to keep synced in dynamic organizations. These tools can help.",
-      tags: "management",
-      long: "10min read",
-    },
-    {
-      img: "../assets/hero-posts/3.jpg",
-      author: "Nirbhay luthra",
-      time: "Jan 31, 2023",
-      category: "web",
-      title: "How I Made My App 2.4x Faster Switching to Svelte",
-      description:
-        "This article is not to say that Angular can’t be fast. That’s not true. It’s that Svelte Kit makes it intuitive to be fast.",
-      tags: "Svelte",
-      long: "6min read",
-    },
-  ];
+  const [loading, setLoading] = useState(true);
+
+  
+  const [trendingPosts, setTrendingPosts] = useState([]);
+
+  useEffect(() => {
+    const getTrendingBlogs = async () => {
+      const blogRef = collection(db, "blogs");
+      const trendQuery = query(blogRef, where("trending", "==", true));
+      const querySnapshot = await getDocs(trendQuery);
+      let trendingPosts = [];
+      querySnapshot.forEach((doc) => {
+        trendingPosts.push({ id: doc.id, ...doc.data() });
+      });
+
+      setTrendingPosts(trendingPosts);
+      setLoading(false);
+    };
+    getTrendingBlogs();
+    return () => {
+      getTrendingBlogs();
+    };
+  }, []);
+  if (loading) {
+    return <PostLoader />;
+  }
   return (
     <section className="hero">
       <div className="hero__left">
@@ -67,12 +63,12 @@ function Hero() {
           </h2>
         </div>
         <div className="hero__left--post">
-          <HeroPost post={posts[0]} pop />{" "}
+          <HeroPost post={trendingPosts[0]} pop />{" "}
         </div>
       </div>
       <div className="hero__right">
-        <HeroPost post={posts[1]} />
-        <HeroPost post={posts[2]} />
+        <HeroPost post={trendingPosts[1]} />
+        <HeroPost post={trendingPosts[2]} />
       </div>
     </section>
   );

@@ -1,95 +1,35 @@
 import { useNavigate } from "react-router-dom";
-import SidebarPost from "./SidebarPost";
+import SidebarPosts from "./SidebarPosts";
 import Authors from "./Authors";
 
 function RightSidebar() {
   const navigate = useNavigate();
 
-  const posts = [
+  const authors = [
     {
-      img: "../assets/hero-posts/1.jpg",
       author: "Will Brett",
-      time: "November 3, 2022",
-      category: "web",
-      title: "11 Stages To Become A JavaScript Full-Stack Engineer",
-      description:
-        "web of the questions asked are about how to quickly improve their skills, how to become a Full Stack Developer, or how to choose a career direction.",
-      tags: "javascript",
-      long: "4min read",
     },
     {
-      img: "../assets/hero-posts/2.jpg",
       author: "Nick Meyer",
-      time: "December 8, 2022",
-      category: "web",
-      title:
-        "8 design system management tools for startups & organizations, 2023",
-      description:
-        "Design systems create consistency, scalability, and efficiency across complex products and distributed teams. They’re also a drain on resources and a struggle to keep synced in dynamic organizations. These tools can help.",
-      tags: "management",
-      long: "10min read",
     },
     {
-      img: "../assets/hero-posts/3.jpg",
       author: "Nirbhay luthra",
-      time: "Jan 31, 2023",
-      category: "web",
-      title: "How I Made My App 2.4x Faster Switching to Svelte",
-      description:
-        "This article is not to say that Angular can’t be fast. That’s not true. It’s that Svelte Kit makes it intuitive to be fast.",
-      tags: "Svelte",
-      long: "6min read",
     },
   ];
   return (
     <div className="LeftSidebar">
-      {/**Most Read*/}
-      <div className="LeftSidebar__most">
-        <div className="LeftSidebar__most--title">
-          <h2>MOST READ</h2>
-          <button>
-            See all <img src="../assets/right-arrow.svg" alt="right-arrow" />
-          </button>
-        </div>
-
-        <div className="LeftSidebar__most--content">
-          <SidebarPost
-            post={posts[0]}
-            position={"Fron-End Developer"}
-            imgno={"1"}
-          />
-          <SidebarPost
-            post={posts[1]}
-            position={"Full-Stack Developer"}
-            imgno={"2"}
-          />
-          <SidebarPost post={posts[2]} position={"UI Designer"} imgno={"3"} />
-        </div>
+      {/**TRENDING*/}
+      <div className="LeftSidebar__trending">
+        <SidebarPosts name={"TRENDING"} property={"trending"} value={true} />
       </div>
 
       {/**Web Category*/}
       <div className="LeftSidebar__web">
-        <div className="LeftSidebar__web--title">
-          <h2>WEB</h2>
-          <button>
-            See all <img src="../assets/right-arrow.svg" alt="right-arrow" />
-          </button>
-        </div>
-
-        <div className="LeftSidebar__web--content">
-          <SidebarPost
-            post={posts[0]}
-            position={"Fron-End Developer"}
-            imgno={"1"}
-          />
-          <SidebarPost
-            post={posts[1]}
-            position={"Full-Stack Developer"}
-            imgno={"2"}
-          />
-          <SidebarPost post={posts[2]} position={"UI Designer"} imgno={"3"} />
-        </div>
-        <button className="LeftSidebar__web--button">
+        <SidebarPosts name={"WEB"} property={"category"} value={"web"} />
+        <button
+          className="LeftSidebar__web--button"
+          onClick={() => navigate("/categories")}
+        >
           {" "}
           See All Categories{" "}
         </button>
@@ -106,19 +46,18 @@ function RightSidebar() {
 
         <div className="LeftSidebar__authors--content">
           <Authors
-            post={posts[0]}
+            post={authors[0]}
             position={"Fron-End Developer"}
             imgno={"1"}
           />
           <Authors
-            post={posts[1]}
+            post={authors[1]}
             position={"Full-Stack Developer"}
             imgno={"2"}
           />
-          <Authors post={posts[2]} position={"UI Designer"} imgno={"3"} />
+          <Authors post={authors[2]} position={"UI Designer"} imgno={"3"} />
         </div>
       </div>
-
       {/**Quick Survey*/}
       <div className="LeftSidebar__survey">
         <div className="LeftSidebar__survey--title">
@@ -181,9 +120,8 @@ function RightSidebar() {
               </label>
             </div>
 
-            <button
-            className="submit-btn" type="submit">
-             Submit
+            <button className="submit-btn" type="submit">
+              Submit
             </button>
           </form>
           <p>

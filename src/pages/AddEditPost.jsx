@@ -68,6 +68,7 @@ function AddEditPost({ user }) {
         });
         navigate("/");
         toast.success("Your post has created successfully");
+        reset();
       } catch (error) {
         toast.error(
           "An error happened while adding the post, please try again later!"
@@ -84,6 +85,7 @@ function AddEditPost({ user }) {
         });
         navigate(-1);
         toast.success("Your post has updated successfully");
+        reset();
       } catch (error) {
         toast.error(
           "An error happened while updating the post, please try again later!"
@@ -96,6 +98,7 @@ function AddEditPost({ user }) {
     } else if (!id && formData) {
       addPost();
     }
+
   }, [formData]);
 {
   /**getPostDetail */
@@ -109,6 +112,7 @@ function AddEditPost({ user }) {
       }
     };
     id && getPostDetail();
+    
   }, [id]);
 
   

@@ -17,90 +17,15 @@ display: none;  }
     margin-top: 0.3rem;
   }
 
-  &__most {
-    &--title {
-      display: flex;
-      align-items: flex-end;
-      gap: 0.2rem;
-      border-bottom: 2px solid vars.$blue;
-      h2 {
-        font-family: vars.$menu;
-        font-style: italic;
-        letter-spacing: 2px;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: vars.$blue;
-      }
-      button {
-        background-color: transparent;
-        border: none;
-        font-family: vars.$menu;
-        font-size: 0.7rem;
-        padding-bottom: 0.3rem;
-        font-style: italic;
-        letter-spacing: 1px;
-        cursor: pointer;
-        img {
-          transition: all 0.3s ease-in-out;
-        }
-      }
-      button:hover {
-        img {
-          transform: translateX(5px);
-        }
-      }
+  &__trending {
+    margin-bottom: 3rem;
     }
-    &--content {
-      margin-block: 2rem 3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-  }
 
   &__web {
-    &--title {
-      display: flex;
-      align-items: flex-end;
-      gap: 0.2rem;
-      border-bottom: 2px solid vars.$blue;
-      h2 {
-        font-family: vars.$menu;
-        font-style: italic;
-        letter-spacing: 2px;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: vars.$blue;
-      }
-      button {
-        background-color: transparent;
-        border: none;
-        font-family: vars.$menu;
-        font-size: 0.7rem;
-        padding-bottom: 0.3rem;
-        font-style: italic;
-        letter-spacing: 1px;
-        cursor: pointer;
-        img {
-          transition: all 0.3s ease-in-out;
-        }
-      }
-      button:hover {
-        img {
-          transform: translateX(5px);
-        }
-      }
-    }
-    &--content {
-      margin-block: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
+    margin-bottom: 3rem;
     &--button {
       font-family: vars.$menu;
-      margin-top: 1rem;
+      margin-top: 2rem;
       border: none;
       background-color: transparent;
       background: linear-gradient(
@@ -115,7 +40,7 @@ display: none;  }
       transition: background-size 300ms ease;
       cursor: pointer;
       color: vars.$dark-blue;
-      margin-bottom: 3rem;
+     
     }
     button:hover {
       background-size: 0% 2px;

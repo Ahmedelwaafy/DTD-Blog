@@ -1,8 +1,7 @@
 import { truncate } from "lodash";
 
 function HeroPost({ post, pop }) {
-  const { img, author, time, category, title, description, tags, long } = post;
-
+  
   return (
     <div className="border" style={{ flexDirection: `${pop ? "column" : ""}` }}>
       <div
@@ -12,13 +11,17 @@ function HeroPost({ post, pop }) {
           width: `${pop ? "100%" : "50%"}`,
         }}
       >
-        <img className="border__img--img" src={img} alt="" />
+        <img
+          className="border__img--img"
+          src={post?.imgUrl}
+          alt={post?.title}
+        />
         <div className="border__img--glass">
           <div className="author">
-            <p className="authorName">{author}</p>
-            <p className="time">{time}</p>
+            <p className="authorName">{post?.author}</p>
+            <p className="time">{post?.timestamp.toDate().toDateString()}</p>
           </div>
-          <p className="category">{category}</p>
+          <p className="category">{post?.category}</p>
         </div>
       </div>
 
@@ -27,15 +30,15 @@ function HeroPost({ post, pop }) {
         style={{ width: `${pop ? "100%" : "50%"}` }}
       >
         <div className="border__content--arrow">
-          <h3>{truncate(title, { length: 47 })}</h3>
+          <h3>{truncate(post?.title, { length: 47 })}</h3>
           <img src="../assets/arrow.svg" alt="arrow" />
         </div>
         <p className="border__content--description">
-          {truncate(description, { length: 107 })}
+          {truncate(post?.description, { length: 107 })}
         </p>
         <div className="border__content--tag">
-          <p className="tags">{tags}</p>
-          <p className="long">{long}</p>
+          <p className="tags">#{post?.tags}</p>
+          <p className="long">{post?.duration} min read</p>
         </div>
       </div>
     </div>

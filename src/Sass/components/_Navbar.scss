@@ -31,6 +31,68 @@
       justify-content: space-between;
       align-items: center;
       gap: 1.5rem;
+      
+.burger-menu,.drop-down-menu{
+  position: absolute;
+  right: 0;
+  top: 77px;
+  //transition: all 0.9s ease-in-out;
+            background-color: vars.$light-rose;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+z-index: 1500;
+
+box-shadow: 3px 3px 10px 1px #df90bd;
+width: 31rem;
+height: calc(100vh - 77px);
+//padding: 2rem;
+
+      button{
+        border: none;
+        background-color: transparent;
+        font-family: vars.$menu;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        align-items: center;
+      }
+      button:hover{
+        font-weight: 600;
+      }
+
+      hr{
+        width: 100%;
+        border: 1px solid #405b7053;
+      }
+      span{
+        color: #002aff;
+      }
+}
+.notification-relative{
+  position: relative;
+}
+.notification{
+  position: absolute;
+  
+  top: 3.5rem;
+
+            background-color: vars.$light-rose;
+      display: flex;
+      
+      align-items: center;
+      justify-content: center;
+     
+z-index: 1500;
+
+box-shadow: 3px 3px 10px 1px #df90bd;
+width: fit-content;
+height: 20rem;
+padding: 2rem;
+}
 
       img {
         cursor: pointer;
@@ -75,18 +137,18 @@
 
       }
     .drop-down-menu{
-      transition: all 0.3s ease-in-out;
       position: absolute;
+      transition: all 0.3s ease-in-out;
       top: 2.5rem;
+      width: fit-content;
+      border-radius: 0.5rem;
       background-color: vars.$light-rose;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 1.2rem;
 z-index: 1500;
-border-radius: 0.5rem;
 box-shadow: 3px 3px 10px 1px #df90bd;
-width: fit-content;
 height: fit-content;
 padding: 2rem;
 
