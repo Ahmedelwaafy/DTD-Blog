@@ -8,9 +8,7 @@ import { PostLoader } from "./Util-Components/Loaders";
 
 function Hero() {
   const [loading, setLoading] = useState(true);
-
-  
-  const [trendingPosts, setTrendingPosts] = useState([]);
+ const [trendingPosts, setTrendingPosts] = useState([]);
 
   useEffect(() => {
     const getTrendingBlogs = async () => {
@@ -26,9 +24,7 @@ function Hero() {
       setLoading(false);
     };
     getTrendingBlogs();
-    return () => {
-      getTrendingBlogs();
-    };
+    
   }, []);
   if (loading) {
     return <PostLoader />;
@@ -63,12 +59,12 @@ function Hero() {
           </h2>
         </div>
         <div className="hero__left--post">
-          <HeroPost post={trendingPosts[0]} pop />{" "}
+          <HeroPost post={trendingPosts[4]} pop />{" "}
         </div>
       </div>
       <div className="hero__right">
-        <HeroPost post={trendingPosts[1]} />
-        <HeroPost post={trendingPosts[2]} />
+        <HeroPost post={trendingPosts[6]} />
+        <HeroPost post={trendingPosts[7]} />
       </div>
     </section>
   );

@@ -5,35 +5,34 @@ import FeedPost from "../components/Util-Components/FeedPost";
 import { PostLoader } from "../components/Util-Components/Loaders";
 import { db } from "../firebase";
 
-function CategoryPage() {
+function AuthorPage() {
       const navigate = useNavigate();
 
-  const { CategoryName } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [categoryPosts, setCategoryPosts] = useState([]);
+  const { authorName } = useParams();
+const [loading, setLoading] = useState(true);
+const [authorPosts, setAuthorPosts] = useState([]);
   useEffect(() => {
-    const getcategoryBlogs = async () => {
+    const getauthorBlogs = async () => {
       const blogRef = collection(db, "blogs");
       const trendQuery = query(
         blogRef,
-        where("category", "==", CategoryName.replace("_", " "))
+        where("author", "==", authorName.replace("_", " "))
       );
       const querySnapshot = await getDocs(trendQuery);
-      let categoryPosts = [];
+      let authorPosts = [];
       querySnapshot.forEach((doc) => {
-        categoryPosts.push({ id: doc.id, ...doc.data() });
+        authorPosts.push({ id: doc.id, ...doc.data() });
       });
 
-      setCategoryPosts(categoryPosts);
+      setAuthorPosts(authorPosts);
       setLoading(false);
     };
-    getcategoryBlogs();
-  }, [CategoryName]);
-  
+    getauthorBlogs();
+  }, [authorName]);
   if (loading) {
     return <PostLoader />;
   }
-  if (categoryPosts.length === 0) {
+  if (authorPosts.length === 0) {
     return (
       <p className="noposts">
         No related posts found,{" "}
@@ -43,9 +42,11 @@ function CategoryPage() {
   }
   return (
     <div className="author-div">
-      <h1> Posts Related to {CategoryName.replace("_", " ")}</h1>
+      <h1>{authorName.replace("_", " ")} Page</h1>
+      <button>Follow</button>
+      <h2>Posts</h2>
       <div className="author-posts">
-        {categoryPosts?.map((post, index) => (
+        {authorPosts?.map((post, index) => (
           <FeedPost post={post} key={index} />
         ))}
       </div>
@@ -53,4 +54,4 @@ function CategoryPage() {
   );
 }
 
-export default CategoryPage;
+export default AuthorPage;

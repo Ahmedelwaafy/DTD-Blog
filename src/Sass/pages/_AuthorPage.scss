@@ -1,0 +1,60 @@
+@use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
+.noposts{
+  text-align: center;
+   font-family: vars.$menu;
+    font-size: 2rem;
+    margin-bottom: 21rem;
+    margin-top: 2rem;
+    span{
+       font-family: vars.$menu;
+    font-size: 2rem;
+    cursor: pointer
+    ;
+    color: vars.$rose;
+    
+    }
+}
+.author-div{
+
+  width: min(85%, 1300px);
+  margin-inline: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 2rem;
+  gap: 1rem;
+  h1{
+    font-family: vars.$menu;
+    font-size: 3rem;
+@include media.max(md) {
+    font-size: 2rem;
+      } 
+  }
+  button{
+    background-color: transparent;
+    border-radius: 0.3rem;
+    padding: 0.2rem 0.4rem;
+    border: 2px solid vars.$blue;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+button:hover{
+  background-color: vars.$light-rose;
+    border: 2px solid vars.$light-rose;
+}
+  h2{
+font-family: vars.$menu;
+    font-size: 1.5rem;
+  }
+  .author-posts{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    @include media.max(md) {
+        grid-template-columns: 1fr;
+      }  
+  }
+}

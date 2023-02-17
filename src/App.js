@@ -17,6 +17,10 @@ import SignIn from "./pages/SignIn";
 import { MainLoader, PinLoader } from "./components/Util-Components/Loaders";
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
+import TagPage from "./pages/TagPage";
+import AuthorPage from "./pages/AuthorPage";
+import Categories from "./pages/Categories";
+import Pricing from "./pages/Pricing";
 const LazyHomePage = lazy(() => import("./pages/HomePage"));
 const LazyCategoryPage = lazy(() => import("./pages/CategoryPage"));
 const LazySinglePostPage = lazy(() => import("./pages/SinglePostPage"));
@@ -67,6 +71,9 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="/tags/:tagName" element={<TagPage />} />
+          <Route path="/authors/:authorName" element={<AuthorPage />} />
+          <Route path="/categories" element={<Categories />} />
           <Route
             path="/posts/:id"
             element={
@@ -77,6 +84,7 @@ function App() {
           />
 
           <Route path="/about" element={<About />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Route>
 
         <Route

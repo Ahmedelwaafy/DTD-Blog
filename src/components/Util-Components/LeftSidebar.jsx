@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function LeftSidebar() {
   const navigate = useNavigate();
-  const [write, setWrite] = useState(true)
+  const [write, setWrite] = useState(true);
   return (
     <aside className="RightSidebar">
       {/**unlimited access*/}
@@ -22,6 +22,7 @@ function LeftSidebar() {
         />
       </div>
       <hr />
+
       {/**ADS*/}
       <div className="RightSidebar__ads">
         <h3 className="RightSidebar__ads--title">
@@ -32,31 +33,40 @@ function LeftSidebar() {
           <p>SQUARE ADS</p>
           <p className="place">Place your ADS on DTD and reach more people.</p>
           <img src="../assets/ads.svg" alt="ads" />
-          <button className="link"> Contact Sales</button>
+          <button onClick={() => navigate("/pricing")} className="link">
+            {" "}
+            Contact Sales
+          </button>
         </div>
       </div>
       <hr />
+
       {/**Hot Tags*/}
       <div className="RightSidebar__tags">
         <h3 className="RightSidebar__ads--title">
           <img src="../assets/dot.svg" alt="dot" /> HOT TAGS
         </h3>
         <div className="RightSidebar__tags--content">
-          <button>#React</button>
-          <button>#Layoffs</button>
-          <button>#TypeScript </button>
-          <button>#GitHub </button>
-          <button>#CICD</button>
-          <button>#Tailwind</button>
-          <button>#ORM</button>
-          <button>#Prisma </button>
-          <button>#Next.js</button>
-          <button>#JavaScript</button>
-          <button>#Remote </button>
-          <button>#Roadmap </button>
+          <button onClick={() => navigate("/tags/react")}>#react</button>
+          <button onClick={() => navigate("/tags/layoffs")}>#layoffs</button>
+          <button onClick={() => navigate("/tags/typescript")}>
+            #typescript{" "}
+          </button>
+          <button onClick={() => navigate("/tags/github")}>#github </button>
+          <button onClick={() => navigate("/tags/cicd")}>#cicd</button>
+          <button onClick={() => navigate("/tags/tailwind")}>#tailwind</button>
+          <button onClick={() => navigate("/tags/orm")}>#orm</button>
+          <button onClick={() => navigate("/tags/prisma")}>#prisma </button>
+          <button onClick={() => navigate("/tags/next.js")}>#next.js</button>
+          <button onClick={() => navigate("/tags/javaScript")}>
+            #javaScript
+          </button>
+          <button onClick={() => navigate("/tags/remote")}>#remote </button>
+          <button onClick={() => navigate("/tags/roadmap")}>#roadmap </button>
         </div>
       </div>
       <hr />
+
       {/**Instagram*/}
       <div className="RightSidebar__Instagram">
         <h3 className="RightSidebar__Instagram--title">
@@ -72,6 +82,7 @@ function LeftSidebar() {
         </div>
       </div>
       <hr />
+
       {/**Write*/}
       {write && (
         <div className="RightSidebar__write">
@@ -89,7 +100,9 @@ function LeftSidebar() {
             <button>New blogger FAQ</button>
             <button>Pro blogging advices</button>
             <button>Maximize your readership</button>
-            <button className="start">Start Writing</button>
+            <button 
+            onClick={()=>navigate("/write")}
+            className="start">Start Writing</button>
           </div>
         </div>
       )}

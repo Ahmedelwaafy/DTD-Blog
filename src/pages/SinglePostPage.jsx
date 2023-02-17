@@ -75,7 +75,13 @@ function SinglePostPage({ user }) {
               <div className="absolute__last-row--author-image-container">
                 <img src="../assets/authors/1.jpg" alt="" />
                 <div>
-                  <h4>{post?.author}</h4>
+                  <h4
+                    onClick={() =>
+                      navigate(`/authors/${post?.author.replace(" ", "_")}`)
+                    }
+                  >
+                    {post?.author}
+                  </h4>
                   <button>Follow</button>
                 </div>
               </div>
@@ -145,7 +151,11 @@ function SinglePostPage({ user }) {
 
       <div className="container__aside">
         {/** Category*/}
-        <SidebarPosts name={post?.category} property={"category"} value={post?.category} />
+        <SidebarPosts
+          name={post?.category}
+          property={"category"}
+          value={post?.category}
+        />
       </div>
     </section>
   );

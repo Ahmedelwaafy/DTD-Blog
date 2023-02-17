@@ -1,5 +1,23 @@
+@use "../util/boilerplate" as vars;
+@use "../util/breakpoints" as media;
+
 footer {
-  height: 90vh;
+  height: 10rem;
   width: 100%;
-  background-color: #381e5f;
+  background-color: vars.$purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    p {
+      font-family: vars.$menu;
+      color: vars.$rose;
+      span {
+        color: vars.$rose;
+        font-weight: 700;
+        font-family: vars.$menu;
+      }
+    }
+  }
 }

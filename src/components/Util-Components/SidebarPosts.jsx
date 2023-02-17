@@ -10,7 +10,7 @@ function SidebarPosts({ name, property, value }) {
   const [loading, setLoading] = useState(true);
 
   const [trendingPosts, setTrendingPosts] = useState([]);
-  
+
   useEffect(() => {
     const getTrendingBlogs = async () => {
       const blogRef = collection(db, "blogs");
@@ -25,9 +25,6 @@ function SidebarPosts({ name, property, value }) {
       setLoading(false);
     };
     getTrendingBlogs();
-    return () => {
-      getTrendingBlogs();
-    };
   }, [property, value]);
 
   if (loading) {
@@ -38,28 +35,51 @@ function SidebarPosts({ name, property, value }) {
     <>
       <div className="title">
         <h2>{name?.toUpperCase()}</h2>
-        <button onClick={() => navigate(`/categories/${name?.toLowerCase()}`)}>
+        <button
+          onClick={() => navigate(`/categories/${name?.replace(" ", "_")}`)}
+        >
           See all <img src="../assets/right-arrow.svg" alt="right-arrow" />
         </button>
       </div>
 
-      {trendingPosts?.slice(0,4).map((post, index) => (
+      {trendingPosts?.slice(0, 4).map((post, index) => (
         <div className="sidepost" key={index}>
           <div className="sidepost__img">
-            <img src={post?.imgUrl} alt="" />
+            <img
+              onClick={() => navigate(`/posts/${post?.id}`)}
+              src={post?.imgUrl}
+              alt=""
+            />
           </div>
           <div className="sidepost__content">
             <div className="sidepost__content--tags">
-              <button>#{post?.tags}</button>
+              <button onClick={() => navigate(`/tags/${post?.tags}`)}>
+                #{post?.tags}
+              </button>
               <p>{post?.duration} min read</p>
             </div>
-            <h3 className="sidepost__content--title">
+            <h3
+              onClick={() => navigate(`/posts/${post?.id}`)}
+              className="sidepost__content--title"
+            >
               {truncate(post?.title, { length: 50 })}
             </h3>
             <div className="sidepost__content--img">
-              <img src={`../assets/authors/${2}.jpg `} alt="author" />
+              <img
+                onClick={() =>
+                  navigate(`/authors/${post?.author.replace(" ", "_")}`)
+                }
+                src={`../assets/authors/${2}.jpg `}
+                alt="author"
+              />
               <div>
-                <button>{post?.author}</button>
+                <button
+                  onClick={() =>
+                    navigate(`/authors/${post?.author.replace(" ", "_")}`)
+                  }
+                >
+                  {post?.author}
+                </button>
                 <p>Web Developer</p>
               </div>
             </div>

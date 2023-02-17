@@ -71,7 +71,7 @@ function Navbar({ user, handleLogout }) {
                 <hr />
                 <button
                   onClick={() => {
-                    navigate("/categories/uidesign");
+                    navigate("/categories/UI_Design");
                     setShowMenu(false);
                   }}
                 >
@@ -79,11 +79,11 @@ function Navbar({ user, handleLogout }) {
                 </button>
                 <button
                   onClick={() => {
-                    navigate("/categories/uxdesign");
+                    navigate("/categories/UX_Design");
                     setShowMenu(false);
                   }}
                 >
-                  Ux Design
+                  UX Design
                 </button>
                 <button
                   onClick={() => {
@@ -95,7 +95,7 @@ function Navbar({ user, handleLogout }) {
                 </button>
                 <button
                   onClick={() => {
-                    navigate("/categories/nft");
+                    navigate("/categories/NFT");
                     setShowMenu(false);
                   }}
                 >
@@ -103,7 +103,7 @@ function Navbar({ user, handleLogout }) {
                 </button>
                 <button
                   onClick={() => {
-                    navigate("/categories/devops");
+                    navigate("/categories/DevOps");
                     setShowMenu(false);
                   }}
                 >
@@ -111,7 +111,7 @@ function Navbar({ user, handleLogout }) {
                 </button>
                 <button
                   onClick={() => {
-                    navigate("/categories/chatgpt");
+                    navigate("/categories/ChatGPT");
                     setShowMenu(false);
                   }}
                 >
@@ -119,7 +119,7 @@ function Navbar({ user, handleLogout }) {
                 </button>
                 <button
                   onClick={() => {
-                    navigate("/categories/deployment");
+                    navigate("/categories/Deployment");
                     setShowMenu(false);
                   }}
                 >
@@ -127,7 +127,7 @@ function Navbar({ user, handleLogout }) {
                 </button>
                 <button
                   onClick={() => {
-                    navigate("/categories/seo");
+                    navigate("/categories/SEO");
                     setShowMenu(false);
                   }}
                 >
@@ -263,7 +263,7 @@ function Navbar({ user, handleLogout }) {
               <li>
                 <NavLink
                   className="link"
-                  to="/categories/uidesign"
+                  to="/categories/UI_Design"
                   style={activeLink}
                 >
                   UI Design
@@ -273,7 +273,7 @@ function Navbar({ user, handleLogout }) {
               <li>
                 <NavLink
                   className="link"
-                  to="/categories/uxdesign"
+                  to="/categories/UX_Design"
                   style={activeLink}
                 >
                   UX Design
@@ -293,7 +293,7 @@ function Navbar({ user, handleLogout }) {
               <li>
                 <NavLink
                   className="link"
-                  to="/categories/nft"
+                  to="/categories/NFT"
                   style={activeLink}
                 >
                   NFT{" "}
@@ -303,7 +303,7 @@ function Navbar({ user, handleLogout }) {
               <li>
                 <NavLink
                   className="link"
-                  to="/categories/devops"
+                  to="/categories/DevOps"
                   style={activeLink}
                 >
                   DevOps{" "}
@@ -313,7 +313,7 @@ function Navbar({ user, handleLogout }) {
               <li className="hot">
                 <NavLink
                   className="link"
-                  to="/categories/chatgpt"
+                  to="/categories/ChatGPT"
                   style={activeLink}
                 >
                   ChatGPT
@@ -324,7 +324,7 @@ function Navbar({ user, handleLogout }) {
               <li>
                 <NavLink
                   className="link"
-                  to="/categories/deployment"
+                  to="/categories/Deployment"
                   style={activeLink}
                 >
                   Deployment{" "}
@@ -334,7 +334,7 @@ function Navbar({ user, handleLogout }) {
               <li>
                 <NavLink
                   className="link"
-                  to="/categories/seo"
+                  to="/categories/SEO"
                   style={activeLink}
                 >
                   SEO

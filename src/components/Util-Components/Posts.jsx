@@ -24,9 +24,7 @@ function Posts() {
       }
     );
 
-    return () => {
-      unsub();
-    };
+    
   }, []);
 
   const showFollowing = () => ({
@@ -84,7 +82,7 @@ if (loading) {
             ))}
           </>
         ) : show === "following" ? (
-          "You aren't following anyone yet"
+          "You haven't followed anyone yet!"
         ) : (
           ""
         )}
