@@ -62,14 +62,17 @@ function SidebarPosts({ name, property, value }) {
               onClick={() => navigate(`/posts/${post?.id}`)}
               className="sidepost__content--title"
             >
-              {truncate(post?.title, { length: 50 })}
+              {truncate(post?.title, { length: 40 })}
             </h3>
             <div className="sidepost__content--img">
               <img
                 onClick={() =>
                   navigate(`/authors/${post?.author.replace(" ", "_")}`)
                 }
-                src={`../assets/authors/${2}.jpg `}
+                src={
+                  post?.authorPhoto ||
+                  "https://xsgames.co/randomusers/avatar.php?g=male"
+                }
                 alt="author"
               />
               <div>

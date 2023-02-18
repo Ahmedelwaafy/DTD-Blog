@@ -20,12 +20,12 @@ function RightSidebar() {
     <div className="LeftSidebar">
       {/**TRENDING*/}
       <div className="LeftSidebar__trending">
-        <SidebarPosts name={"TRENDING"} property={"trending"} value={true} />
+        <SidebarPosts name={"trending"} property={"trending"} value={true} />
       </div>
 
       {/**Web Category*/}
       <div className="LeftSidebar__web">
-        <SidebarPosts name={"WEB"} property={"category"} value={"web"} />
+        <SidebarPosts name={"web"} property={"category"} value={"web"} />
         <button
           className="LeftSidebar__web--button"
           onClick={() => navigate("/categories")}

@@ -52,7 +52,7 @@ font-family: vars.$menu;
     margin-top: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 3rem;
     @include media.max(md) {
         grid-template-columns: 1fr;
       }  

@@ -19,7 +19,7 @@ function Layout({ user, handleLogout }) {
     <>
       <div id="top"></div>
       <Navbar user={user} handleLogout={handleLogout} />
-      <Outlet />
+      <Outlet style={{minHeight: "100vh"}}/>
       {scroll && (
         <a href="#top" className="BackToTop">
           <img src="../assets/top.svg" alt="top" />

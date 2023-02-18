@@ -165,7 +165,7 @@ function Navbar({ user, handleLogout }) {
                   <img
                     onClick={() => setShowDropMenu(!showDropMenu)}
                     className="user"
-                    src="../assets/user.svg"
+                    src={user?.photoURL || "../assets/user.svg"}
                     alt="user"
                   />
                   <img

@@ -21,6 +21,8 @@ import TagPage from "./pages/TagPage";
 import AuthorPage from "./pages/AuthorPage";
 import Categories from "./pages/Categories";
 import Pricing from "./pages/Pricing";
+import TrendingPostsPage from "./pages/TrendingPostsPage";
+import FutureUpdates from "./pages/FutureUpdates";
 const LazyHomePage = lazy(() => import("./pages/HomePage"));
 const LazyCategoryPage = lazy(() => import("./pages/CategoryPage"));
 const LazySinglePostPage = lazy(() => import("./pages/SinglePostPage"));
@@ -74,6 +76,7 @@ function App() {
           <Route path="/tags/:tagName" element={<TagPage />} />
           <Route path="/authors/:authorName" element={<AuthorPage />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/trending" element={<TrendingPostsPage />} />
           <Route
             path="/posts/:id"
             element={
@@ -101,6 +104,7 @@ function App() {
         />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/FutureUpdates" element={<FutureUpdates />} />
       </Routes>
     </>
   );

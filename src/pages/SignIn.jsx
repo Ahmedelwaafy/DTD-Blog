@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signInWithPopup } from "firebase/auth";
+import { auth, GoogleProvider } from "../firebase";
+import { toast } from "react-toastify";
+
 
 function SignIn() {
   const {
@@ -19,19 +21,60 @@ function SignIn() {
 
   const handleAuth = async (data) => {
     console.log(data);
-    reset();
+    
     if (signin){
-const {user} = await signInWithEmailAndPassword(auth, data.email,data.password)
+      try {
+        const { user } = await signInWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password
+        );
+      
+        navigate("/");
+        reset();
+      } catch (error) {
+        toast.error(
+          "An error happened while signing you in!, if you don't have an account please sign up and create one. "
+        );
+      }
+
     }
     else{
-       const {user} = await createUserWithEmailAndPassword(auth, data.email,data.password)
-       await updateProfile(user, {displayName: `${data.firstName} ${data.lastName}`,});
+
+      try {
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password
+        );
+        await updateProfile(user, {
+          displayName: `${data.firstName} ${data.lastName}`,
+        });
+        navigate("/");
+        reset();
+      } catch (error) {
+        toast.error(
+          "An error happened, please make sure your information is correct and try again! "
+        );
+      }
+
+       
     }
         //navigate("/", { replace: true });
 
   };
 
+const joinWithGoogle = async ()=>{
+try {
+  const googleResult = await signInWithPopup(auth, GoogleProvider);
+  navigate("/")
+} catch (error) {
+  toast.error(
+    "An error happened wile signing you in!, please make sure your information is correct and try again! "
+  );
+}
 
+}
   return (
     <section className="signinContainer">
       <div className="signin">
@@ -199,7 +242,7 @@ const {user} = await signInWithEmailAndPassword(auth, data.email,data.password)
           <div className="signin__right--under-form">
             <p>— Or join With —</p>
             <div className="sign-options">
-              <button onClick={() => navigate("")}>
+              <button onClick={joinWithGoogle}>
                 <img src="../assets/Google.svg" alt="google" />
                 Google
               </button>

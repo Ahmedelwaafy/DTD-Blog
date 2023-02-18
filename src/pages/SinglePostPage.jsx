@@ -73,7 +73,13 @@ function SinglePostPage({ user }) {
             <h1 className="absolute__title">{post?.title}</h1>
             <div className="absolute__last-row">
               <div className="absolute__last-row--author-image-container">
-                <img src="../assets/authors/1.jpg" alt="" />
+                <img
+                  src={
+                    post?.authorPhoto ||
+                    "https://xsgames.co/randomusers/avatar.php?g=male"
+                  }
+                  alt=""
+                />
                 <div>
                   <h4
                     onClick={() =>

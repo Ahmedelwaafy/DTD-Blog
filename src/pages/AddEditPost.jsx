@@ -65,6 +65,7 @@ function AddEditPost({ user }) {
           timestamp: serverTimestamp(),
           userId: user.uid,
           author: user.displayName,
+          authorPhoto: user.photoURL,
         });
         navigate("/");
         toast.success("Your post has created successfully");
