@@ -28,11 +28,11 @@ function SignIn({ setUser }) {
           data.password
         );
 setUser(user)
-        navigate("/");
+       navigate("/", { replace: true });
         reset();
       } catch (error) {
         toast.error(
-          "An error happened while signing you in!, if you don't have an account please sign up and create one. "
+          "An error happened while signing you in!, if you don't have an account please sign up and create one."
         );
       }
     } else {
@@ -45,7 +45,7 @@ setUser(user)
         await updateProfile(user, {
           displayName: `${data.firstName} ${data.lastName}`,
         });
-        navigate("/");
+navigate("/", { replace: true })
         reset();
       } catch (error) {
         toast.error(
@@ -53,7 +53,6 @@ setUser(user)
         );
       }
     }
-    //navigate("/", { replace: true });
   };
 
   const joinWithGoogle = async () => {
@@ -62,7 +61,7 @@ setUser(user)
       navigate("/");
     } catch (error) {
       toast.error(
-        "An error happened wile signing you in!, please make sure your information is correct and try again! "
+        "An error happened wile signing you in!, please check your internet connection and try again! "
       );
     }
   };
