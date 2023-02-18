@@ -99,7 +99,7 @@ function SinglePostPage({ user }) {
         <div className="description">
           <div className="buttons">
             <abbr title="Share on facebook">
-              <img src="../assets/facebook2.svg" alt="facebook" />
+              <img src="../assets/Facebook3.svg" alt="facebook" />
             </abbr>
 
             <abbr title="Share on linkedin">

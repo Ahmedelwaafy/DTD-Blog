@@ -23,6 +23,7 @@ import Categories from "./pages/Categories";
 import Pricing from "./pages/Pricing";
 import TrendingPostsPage from "./pages/TrendingPostsPage";
 import FutureUpdates from "./pages/FutureUpdates";
+import FollowPage from "./pages/FollowPage";
 const LazyHomePage = lazy(() => import("./pages/HomePage"));
 const LazyCategoryPage = lazy(() => import("./pages/CategoryPage"));
 const LazySinglePostPage = lazy(() => import("./pages/SinglePostPage"));
@@ -87,6 +88,7 @@ function App() {
           />
 
           <Route path="/about" element={<About />} />
+          <Route path="/follow" element={<FollowPage />} />
           <Route path="/pricing" element={<Pricing />} />
         </Route>
 
