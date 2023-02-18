@@ -24,7 +24,7 @@ function TrendingPostsPage() {
       setLoading(false);
     };
     getTrendingPosts();
-    console.log(TrendingPosts);
+    
   }, []);
 
   if (loading) {

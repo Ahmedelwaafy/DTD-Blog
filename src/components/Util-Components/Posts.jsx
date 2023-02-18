@@ -20,7 +20,6 @@ function Posts() {
         setLoading(false);
       },
       (error) => {
-        console.log(error);
       }
     );
 

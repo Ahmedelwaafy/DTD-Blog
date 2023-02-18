@@ -41,7 +41,6 @@ function Navbar({ user, handleLogout }) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  console.log(user);
 
   return (
     <>
@@ -135,8 +134,12 @@ function Navbar({ user, handleLogout }) {
                 </button>
 
                 <hr />
-                <button onClick={handleLogout}>Sign out</button>
-                <span>{user?.email}</span>
+                {user && (
+                  <>
+                    <button onClick={handleLogout}>Sign out</button>
+                    <span>{user?.email}</span>
+                  </>
+                )}
               </div>
             )}
             <img className="night" src="../assets/night.svg" alt="night" />

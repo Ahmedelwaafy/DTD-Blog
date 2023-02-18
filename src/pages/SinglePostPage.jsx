@@ -46,7 +46,7 @@ function SinglePostPage({ user }) {
         toast.error(
           "An error happened while deleting the post, please try again later!"
         );
-        console.log(err);
+        
       }
     }
   };

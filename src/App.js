@@ -2,7 +2,7 @@ import "./Sass/styles.scss";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  BrowserRouter as Router,
+  
   Routes,
   Route,
   Navigate,
@@ -14,7 +14,7 @@ import About from "./pages/About";
 import AddEditPost from "./pages/AddEditPost";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
-import { MainLoader, PinLoader } from "./components/Util-Components/Loaders";
+import { MainLoader } from "./components/Util-Components/Loaders";
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 import TagPage from "./pages/TagPage";
@@ -102,7 +102,7 @@ function App() {
             user ? <AddEditPost user={user} /> : <Navigate to="/signin" />
           }
         />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn setUser={setUser} />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/FutureUpdates" element={<FutureUpdates />} />
       </Routes>

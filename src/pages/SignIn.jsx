@@ -6,7 +6,7 @@ import { auth, GoogleProvider } from "../firebase";
 import { toast } from "react-toastify";
 
 
-function SignIn() {
+function SignIn({ setUser }) {
   const {
     register,
     handleSubmit,
@@ -20,16 +20,14 @@ function SignIn() {
   const [signin, setSignin] = useState(true);
 
   const handleAuth = async (data) => {
-    console.log(data);
-    
-    if (signin){
+    if (signin) {
       try {
         const { user } = await signInWithEmailAndPassword(
           auth,
           data.email,
           data.password
         );
-      
+setUser(user)
         navigate("/");
         reset();
       } catch (error) {
@@ -37,10 +35,7 @@ function SignIn() {
           "An error happened while signing you in!, if you don't have an account please sign up and create one. "
         );
       }
-
-    }
-    else{
-
+    } else {
       try {
         const { user } = await createUserWithEmailAndPassword(
           auth,
@@ -57,24 +52,20 @@ function SignIn() {
           "An error happened, please make sure your information is correct and try again! "
         );
       }
-
-       
     }
-        //navigate("/", { replace: true });
-
+    //navigate("/", { replace: true });
   };
 
-const joinWithGoogle = async ()=>{
-try {
-  const googleResult = await signInWithPopup(auth, GoogleProvider);
-  navigate("/")
-} catch (error) {
-  toast.error(
-    "An error happened wile signing you in!, please make sure your information is correct and try again! "
-  );
-}
-
-}
+  const joinWithGoogle = async () => {
+    try {
+      const googleResult = await signInWithPopup(auth, GoogleProvider);
+      navigate("/");
+    } catch (error) {
+      toast.error(
+        "An error happened wile signing you in!, please make sure your information is correct and try again! "
+      );
+    }
+  };
   return (
     <section className="signinContainer">
       <div className="signin">
@@ -104,7 +95,11 @@ try {
                 : "Hey, Enter your details to sign up."}
             </p>
           </div>
-          <form target="_blank" onSubmit={handleSubmit(handleAuth)} method="POST">
+          <form
+            target="_blank"
+            onSubmit={handleSubmit(handleAuth)}
+            method="POST"
+          >
             {/**First & Last Name */}
 
             {!signin && (
