@@ -1,3 +1,9 @@
+<p align="center">
+    <img   src="https://firebasestorage.googleapis.com/v0/b/dtd-blog-8bed5.appspot.com/o/blog%20yes.gif?alt=media&token=2907989f-fcc9-4a9d-bf69-29c653f246fe"   />
+</p>
+
+<br />
+
 # DTD Blog 
 ## _It is a Fully Responsive Blog Website Dedicated to All Things Web Development, With Modern UI Design._
 <br />
@@ -40,8 +46,12 @@ Here are some online tools i used to facilitate doing this project.
 | [ Hero Patterns]( https://heropatterns.com/) | A collection of repeatable SVG background patterns for you to use on your web projects. |
 | [ UI Verse]( https://uiverse.io/) | Open-Source UI elements for any project. |
 | [ 10015 ]( https://10015.io/ ) | Useful CSS Tools and Other Services. |
-| [ svg repo ]( https://www.svgrepo.com/) | Open-licensed SVG Vector and Icons. |
-| [ dribbble]( https://dribbble.com/) | UI Design Inspiration. |
-| [ font joy]( https://fontjoy.com/) | Font pairing, Generate font combinations with deep learning. |
-| [ lottie files]( https://lottiefiles.com/) | Lightweight, scalable animations for your website. |
-| [ compressimage]( https://compressimage.io/) | Compress Images Online. |
+| [ Svg Repo ]( https://www.svgrepo.com/) | Open-licensed SVG Vector and Icons. |
+| [ Dribbble]( https://dribbble.com/) | UI Design Inspiration. |
+| [ Font Joy]( https://fontjoy.com/) | Font pairing, Generate font combinations with deep learning. |
+| [ Lottie Files]( https://lottiefiles.com/) | Lightweight, scalable animations for your website. |
+| [ Compress Image]( https://compressimage.io/) | Compress Images Online. |
+
+###### Animation by [Kit8](https://kit8.net/)
+
+Thanx for watching.
